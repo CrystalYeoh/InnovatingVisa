@@ -1,49 +1,35 @@
-import React from 'react';
+import React from "react";
 
-import classnames from 'classnames';
+import Listing from './ListingComponent';
 
-class Listing extends React.Component {
+class Dashboard extends React.Component {
     constructor(props) {
         super(props);
-        this.listing = props.listing;
-        this.id = this.listing[0]
-        this.image = this.listing[1]
-        this.title = this.listing[2]
-        this.address = this.listing[3]
-        this.description = this.listing[4]
-        this.price = this.listing[5]
-
-        this.columnClasses = classnames('column', 'col-4', 'col-xs-12')
-        this.cardClasses = classnames('card')
+        this.listings = [['0', 'logo192.png', 'KFC', 'address', 'description', '5'], ['1', 'logo192.png', 'Burger King', 'address', 'description', '5']];
     }
-
-    // const { id, image, title, address, description, price } = listing
     
     render() {
         return (
-            <div className={this.columnClasses} style={{ margin: '1rem 0' }}>
-              
-              <div className={this.cardClasses}>
-                <div className="card-image">
-                  <img className="img-responsive" src={`${this.image}`} alt={this.address} />
-                </div>
-                <div className="card-header">
-                  <div className="card-title h5">{this.id}</div>
-                  <div className="card-title h6">&#36; {this.price}</div>
-                  <div className="card-subtitle text-gray">{this.address}</div>
-                </div>
-                <div className="card-body">{this.description}</div>
-                <div className="card-footer">
-                  <button className="btn btn-primary" to={`/details/${this.id}`}>
-                    Go to merchant
-                  </button>
-                </div>
-              </div>
-            </div>
+            <div className="columns">
+                {this.listings.map(
+                listing => (<Listing listing={listing} />)
+        )}
+    </div>
         )
     }
 }
 
+export default Dashboard
 
-export default Listing
-
+// const sampleMerchant = [['0', 'logo192.png', 'KFC', 'address', 'description', '5'], ['1', 'logo192.png', 'Burger King', 'address', 'description', '5']]
+// ReactDOM.render(
+//   <React.StrictMode>
+//     <MyNavbar />
+//     <div className="columns">
+//       {sampleMerchant.map(
+//         listing => (<Listing listing={listing} />)
+//       )}
+//     </div>
+//   </React.StrictMode>,
+//   document.getElementById('root')
+// );
