@@ -117,7 +117,7 @@ class CreateVISAReady extends Component {
         <Row form>
           <Col>
             <FormGroup>
-              <Button type = "submit" color="primary">Register</Button>
+              <Button type = "submit" color="primary" onClick = {this.handleSubmit}>Register</Button>
             </FormGroup>
           </Col>
         </Row>
