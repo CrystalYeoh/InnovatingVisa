@@ -1,11 +1,14 @@
 import React from "react";
-import { Breadcrumb, BreadcrumbItem } from "reactstrap";
+import { Button } from "reactstrap";
 import { Link } from "react-router-dom";
+import createBucket from "./Creategcpbucket";
 
 function PageShower(props) {
   return (
     <div className="container">
-      <h4>Page</h4>
+      <Button onClick={createBucket} color="primary">
+        primary
+      </Button>
     </div>
   );
 }
