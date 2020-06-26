@@ -52,3 +52,8 @@ address {
   transform: translateX(100%);
   transition: all 300ms ease-out;
 }
+.media-object {
+  width: 15vw;
+  height: 15vw;
+  padding: 10px 10px 10px 10px;
+}

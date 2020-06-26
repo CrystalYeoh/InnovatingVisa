@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Navbar, NavbarBrand } from "reactstrap";
 import UrlCreator from "./CreateurlComponent";
-import PageShower from "./PageComponent";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
@@ -70,35 +69,21 @@ class Main extends Component {
     super(props);
     this.state = { apiResponse: "" };
   }
-  callAPI() {
-    fetch("http://localhost:9000/testAPI")
-      .then((res) => res.text())
-      .then((res) => this.setState({ apiResponse: res }));
-  }
 
-  componentWillMount() {
-    this.callAPI();
-  }
   componentDidMount() {
     this.props.fetchUrls();
   }
   render() {
-    const Page = () => {
-      return <PageShower />;
-    };
     const Createurl = () => {
       return <UrlCreator />;
     };
+    console.log(this.state.apiResponse);
     return (
       <div>
         <Switch>
           <Route path="/createurl" component={Createurl} />
-          <Route
-            path="/url"
-            component={Page}
-            apiresponse={this.state.api.Response}
-          />
-          <Redirect to="/url" />
+
+          <Redirect to="/createurl" />
         </Switch>
       </div>
     );

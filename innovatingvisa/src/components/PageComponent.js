@@ -1,16 +1,21 @@
-import React from "react";
-import { Button } from "reactstrap";
-import { Link } from "react-router-dom";
-import createBucket from "./Creategcpbucket";
+import React, { Component } from "react";
+import "./Upload.css";
 
-function PageShower(props) {
-  return (
-    <div className="container">
-      <Button onClick={createBucket} color="primary">
-        primary
-      </Button>
-    </div>
-  );
+class Upload extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div className="Upload">
+        <span className="Title">Upload Files</span>
+        <div className="Content">
+          <div />
+          <div className="Files" />
+        </div>
+        <div className="Actions" />
+      </div>
+    );
+  }
 }
-
-export default PageShower;
