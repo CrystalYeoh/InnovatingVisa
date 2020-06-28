@@ -10,10 +10,11 @@ const CreateVISAReady = (props) => {
             <h1 >Are you an existing VISA merchant?</h1>
           </div>
           <div id="choices">
-            <Button color="danger" size="lg">Yes</Button>
             <Link to = "/merchantCreateAcc">
-                <Button color="primary" size="lg">No</Button>
+              <Button color="danger" size="lg">Yes</Button>
             </Link>
+            <Button color="primary" size="lg">No</Button>
+            
             
           </div>
         </section>

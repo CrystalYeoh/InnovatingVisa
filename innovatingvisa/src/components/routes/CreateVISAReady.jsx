@@ -35,6 +35,8 @@ class CreateVISAReady extends Component {
   }
   render(){
     return (
+      <div>
+      <h1 className = 'heading'>Sign up for VISAMarket Account!</h1>
       <Form  className="form">
         <Row form>
           <Col md = {6}>
@@ -116,12 +118,13 @@ class CreateVISAReady extends Component {
         </Row>
         <Row form>
           <Col>
-            <FormGroup>
-              <Button type = "submit" color="primary" onClick = {this.handleSubmit}>Register</Button>
+            <FormGroup className='register'>
+              <Button  type = "submit" color="primary" onClick = {this.handleSubmit}>Register</Button>
             </FormGroup>
           </Col>
         </Row>
       </Form>
+      </div>
 
     );
   }
