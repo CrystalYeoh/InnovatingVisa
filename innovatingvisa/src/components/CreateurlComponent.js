@@ -14,6 +14,9 @@ import Header from "./UrlHeaderComponent";
 import Footer from "./UrlFooterComponent";
 import UrlBody from "./UrlBody";
 import _ from "lodash";
+import ImageUploading from "react-images-uploading";
+import { API_URL } from "../shared/baseUrl";
+import axios from "axios";
 
 class UrlCreator extends Component {
   constructor(props) {
@@ -28,12 +31,18 @@ class UrlCreator extends Component {
       bodyimages: [],
       footerlinks: [],
       footertext: "",
-      socialmediatypes: [],
+      twitterurl: "",
+      facebookurl: "",
+      twitterchecked: false,
+      facebookchecked: false,
       socialmedialinks: [],
+      maxMbFileSize: 5 * 1024 * 1024, // 5Mb
+      instagramurl: "",
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.onChangeimage = this.onChangeimage.bind(this);
   }
 
   handleInputChange(event) {
@@ -82,9 +91,97 @@ class UrlCreator extends Component {
     alert("Current State is: " + JSON.stringify(this.state));
     event.preventDefault();
   }
-  render() {
-    const rows = [];
 
+  onChangeimage(imageList) {
+    console.log(this.state);
+
+    // data for submit
+    const formData = new FormData();
+    imageList.forEach((file, i) => {
+      formData.append(i, file.file);
+    });
+
+    axios
+      .post(`${API_URL}/upload-image`, formData)
+
+      .then((res) => {
+        console.log(res.data);
+        console.log(this.state.bodytext);
+
+        console.log(res.data);
+        //handle success
+        console.log(this.state.bodytext);
+        this.setState({
+          bodyimages: res.data,
+        });
+      })
+      .catch(function (response) {
+        //handle error
+        console.log(response);
+      });
+    console.log(this.state);
+  }
+  render() {
+    const twittercontent = this.state.twitterchecked ? (
+      <div>
+        <FormGroup row>
+          <Label htmlFor="twitterurl" md={2}>
+            Twitter Url
+          </Label>
+          <Col md={10}>
+            <Input
+              type="text"
+              id="twitterurl"
+              name="twitterurl"
+              placeholder="Twitter Url"
+              value={this.state.twitterurl}
+              onChange={this.handleInputChange}
+            />
+          </Col>
+        </FormGroup>
+      </div>
+    ) : null;
+    const facebookcontent = this.state.facebookchecked ? (
+      <div>
+        <FormGroup row>
+          <Label htmlFor="facebookurl" md={2}>
+            Facebook Url
+          </Label>
+          <Col md={10}>
+            <Input
+              type="text"
+              id="facebookurl"
+              name="facebookurl"
+              placeholder="Facebook Url"
+              value={this.state.facebookurl}
+              onChange={this.handleInputChange}
+            />
+          </Col>
+        </FormGroup>
+      </div>
+    ) : null;
+
+    const twittercontent = this.state.twitterchecked ? (
+      <div>
+        <FormGroup row>
+          <Label htmlFor="twitterurl" md={2}>
+            Twitter Url
+          </Label>
+          <Col md={10}>
+            <Input
+              type="text"
+              id="instagramurl"
+              name="instagramurl"
+              placeholder="Instagram Url"
+              value={this.state.instagramurl}
+              onChange={this.handleInputChange}
+            />
+          </Col>
+        </FormGroup>
+      </div>
+    ) : null;
+
+    const rows = [];
     for (var index = 0; index < this.state.bodytextrow; index++) {
       rows.push(
         <div>
@@ -205,11 +302,43 @@ class UrlCreator extends Component {
                 </Col>
               </FormGroup>
 
+              <ImageUploading
+                onChange={this.onChangeimage}
+                maxNumber={this.state.bodytextrow}
+                multiple
+                maxFileSize={this.state.maxMbFileSize}
+                acceptType={["jpg", "gif", "png"]}
+              >
+                {({ imageList, onImageUpload, onImageRemoveAll }) => (
+                  // write your building UI
+                  <div>
+                    <button type="button" onClick={onImageUpload}>
+                      Upload images
+                    </button>
+                    <button type="button" onClick={onImageRemoveAll}>
+                      Remove all images
+                    </button>
+
+                    {imageList.map((image) => (
+                      <div key={image.key}>
+                        <img src={image.dataURL} />
+                        <button type="button" onClick={image.onUpdate}>
+                          Update
+                        </button>
+                        <button type="button" onClick={image.onRemove}>
+                          Remove
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </ImageUploading>
               {rows}
               <UrlBody
                 bodytext={this.state.bodytext}
                 bodytextrow={this.state.bodytextrow}
                 bodyheading={this.state.bodyheading}
+                bodyimages={this.state.bodyimages}
               />
 
               <FormGroup row>
@@ -233,23 +362,25 @@ class UrlCreator extends Component {
                     <Label check>
                       <Input
                         type="checkbox"
-                        name="agree"
-                        checked={this.state.facebook}
+                        name="facebookchecked"
+                        checked={this.state.facebookchecked}
                         onChange={this.handleInputChange}
-                      />{" "}
+                      />
                       <strong>Facebook</strong>
                     </Label>
                   </FormGroup>
                 </Col>
               </FormGroup>
+              {facebookcontent}
+
               <FormGroup row>
                 <Col md={{ size: 6, offset: 2 }}>
                   <FormGroup check>
                     <Label check>
                       <Input
                         type="checkbox"
-                        name="agree"
-                        checked={this.state.twitter}
+                        name="twitterchecked"
+                        checked={this.state.twitterchecked}
                         onChange={this.handleInputChange}
                       />{" "}
                       <strong>Twitter</strong>
@@ -257,6 +388,24 @@ class UrlCreator extends Component {
                   </FormGroup>
                 </Col>
               </FormGroup>
+              {twittercontent}
+
+              <FormGroup row>
+                <Col md={{ size: 6, offset: 2 }}>
+                  <FormGroup check>
+                    <Label check>
+                      <Input
+                        type="checkbox"
+                        name="instagramchecked"
+                        checked={this.state.instagramchecked}
+                        onChange={this.handleInputChange}
+                      />{" "}
+                      <strong>Instagram</strong>
+                    </Label>
+                  </FormGroup>
+                </Col>
+              </FormGroup>
+              {instagramcontent}
 
               <FormGroup row>
                 <Col md={{ size: 10, offset: 2 }}>
@@ -266,7 +415,12 @@ class UrlCreator extends Component {
                 </Col>
               </FormGroup>
             </Form>
-            <Footer footertext={this.state.footertext} />
+            <Footer
+              footertext={this.state.footertext}
+              facebookurl={this.state.facebookurl}
+              twitterurl={this.state.twitterurl}
+              instagramurl={this.state.instagramurl}
+            />
           </div>
         </div>
       </div>

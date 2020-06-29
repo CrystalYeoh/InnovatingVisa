@@ -1,5 +1,5 @@
 import * as ActionTypes from "./ActionTypes";
-import { baseUrl } from "../shared/baseUrl";
+import { API_URL } from "../shared/baseUrl";
 
 export const addUrl = (url) => ({
   type: ActionTypes.ADD_URL,
@@ -28,7 +28,7 @@ export const postUrl = (
     socialmedialinks: socialmedialinks,
   };
 
-  return fetch(baseUrl + "newUrl", {
+  return fetch(API_URL + "newUrl", {
     method: "POST",
     body: JSON.stringify(newUrl),
     headers: {
@@ -62,9 +62,12 @@ export const postUrl = (
 export const fetchUrls = () => (dispatch) => {
   dispatch(urlsLoading());
 
-  return fetch(baseUrl + "urls")
+  return fetch(API_URL + "urls")
     .then((response) => response.json())
-    .then((urls) => dispatch(addUrls(urls)));
+    .then((urls) => {
+      console.log(urls);
+      dispatch(addUrls(urls));
+    });
 };
 
 export const urlsLoading = () => ({
@@ -84,7 +87,7 @@ export const addUrls = (urls) => ({
 export const fetchUsers = () => (dispatch) => {
   dispatch(usersLoading());
 
-  return fetch(baseUrl + "users")
+  return fetch(API_URL + "users")
     .then((response) => response.json())
     .then((users) => dispatch(addUrls(users)));
 };

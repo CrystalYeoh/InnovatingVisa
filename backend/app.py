@@ -1,11 +1,10 @@
 import logging
 import os
 
-from flask import Flask, request
+from flask import Flask, json, g, request,jsonify
 from google.cloud import storage
 from sqlalchemy import create_engine
-import jsonify
-
+from flask_cors import CORS
 
 
 def sql_GCP_insert(sqlstring):
@@ -33,6 +32,7 @@ def sql_GCP_query(sqlstring):
 
 
 app = Flask(__name__)
+CORS(app)
 
 # Configure this environment variable via app.yaml
 CLOUD_STORAGE_BUCKET = 'here_myname'
@@ -55,30 +55,47 @@ def index():
 """
 
 
-@app.route('/upload', methods=['POST'])
+@app.route('/upload-image', methods=['POST'])
 def upload():
     """Process the uploaded file and upload it to Google Cloud Storage."""
-    uploaded_file = request.files.get('file')
+    listurls=[]
+    for i in range(len(request.files)):
+        print(i)
+        uploaded_file = request.files.get(str(i))
+        print(uploaded_file)
+        if not uploaded_file:
+            return 'No file uploaded.', 400
 
-    if not uploaded_file:
-        return 'No file uploaded.', 400
+        # Create a Cloud Storage client.
+        gcs = storage.Client.from_service_account_json('key.json')
 
-    # Create a Cloud Storage client.
-    gcs = storage.Client.from_service_account_json('key.json')
+        # Get the bucket that the file will be uploaded to.
+        bucket = gcs.get_bucket(CLOUD_STORAGE_BUCKET)
 
-    # Get the bucket that the file will be uploaded to.
-    bucket = gcs.get_bucket(CLOUD_STORAGE_BUCKET)
+        # Create a new blob and upload the file's content.
+        blob = bucket.blob(uploaded_file.filename)
 
-    # Create a new blob and upload the file's content.
-    blob = bucket.blob(uploaded_file.filename)
-
-    blob.upload_from_string(
-        uploaded_file.read(),
-        content_type=uploaded_file.content_type
-    )
-
+        blob.upload_from_string(
+            uploaded_file.read(),
+            content_type=uploaded_file.content_type
+        )
+        listurls.append(blob.public_url)
     # The public URL can be used to directly access the uploaded file via HTTP.
-    return blob.public_url
+    return json_response(listurls)
+
+
+@app.route('/urls', methods=['get'])
+def upload2():
+
+    return json_response('boo')
+
+@app.route('/here', methods=['get'])
+def upload3():
+
+    return json_response('boo')
+
+def json_response(payload, status=200):
+ return (json.dumps(payload), status, {'content-type': 'application/json'})
 
 @app.route('/sqlpost', methods=['POST'])
 def postsql():

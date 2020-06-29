@@ -17,23 +17,33 @@ function UrlBody(props) {
   console.log(props);
 
   for (var index = 0; index < props.bodytextrow; index++) {
-    rows.push(
-      <Card id={index}>
-        <Media className>
-          <Media left className="mr-5">
-            <Media
-              object
-              src="https://storage.googleapis.com/here_myname/2.png"
-              alt="text"
-            />
+    if (props.bodyimages[index] !== undefined) {
+      console.log(props.bodyimages[index]);
+      rows.push(
+        <Card id={index}>
+          <Media className>
+            <Media left className="mr-5">
+              <Media object src={props.bodyimages[index]} alt="text" />
+            </Media>
+            <Media body>
+              <Media heading> {props.bodyheading[index]}</Media>
+              <p>{props.bodytext[index]}</p>
+            </Media>
           </Media>
-          <Media body>
-            <Media heading> {props.bodyheading[index]}</Media>
-            <p>{props.bodytext[index]}</p>
+        </Card>
+      );
+    } else {
+      rows.push(
+        <Card id={index}>
+          <Media className>
+            <Media body>
+              <Media heading> {props.bodyheading[index]}</Media>
+              <p>{props.bodytext[index]}</p>
+            </Media>
           </Media>
-        </Media>
-      </Card>
-    );
+        </Card>
+      );
+    }
   }
   if (props.bodytext !== [""]) {
     return <div>{rows}</div>;
