@@ -4,7 +4,7 @@ import os
 from flask import Flask, request
 from google.cloud import storage
 from sqlalchemy import create_engine
-import jsonify
+from flask_cors import CORS
 
 
 
@@ -33,6 +33,7 @@ def sql_GCP_query(sqlstring):
 
 
 app = Flask(__name__)
+CORS(app)
 
 # Configure this environment variable via app.yaml
 CLOUD_STORAGE_BUCKET = 'here_myname'
@@ -84,6 +85,18 @@ def upload():
 def postsql():
     raw_json = request.get_json()
     sqlstatement=raw_json['sql']
+    sql_GCP_insert(sqlstatement)
+
+    return 'yay',201
+
+@app.route('/merchantSignUp', methods=['POST'])
+def merchant_signup():
+    raw_json = request.get_json()
+    print(raw_json)
+    sqlstatement="""
+    INSERT INTO testDB.Merchants (firstName, lastName, email, companyName, password, descr, addr, merchType, contactNo)
+    VALUES ('{}','{}','{}','{}','{}','{}','{}','{}','{}')
+    """.format(raw_json['firstName'],raw_json['lastName'],raw_json['email'],raw_json['companyName'],raw_json['password'],raw_json['descr'],raw_json['addr'],raw_json['merchType'],raw_json['contactNo'])
     sql_GCP_insert(sqlstatement)
 
     return 'yay',201

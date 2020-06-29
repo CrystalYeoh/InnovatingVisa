@@ -11,8 +11,11 @@ import { postUrl, fetchUrls, fetchUsers } from "../redux/ActionCreators";
 import SortingPage from './routes/SortingPage'
 import MerchantSortingPage from "./routes/MerchantSortingPage";
 import CreateVISAReady from "./routes/CreateVISAReady"
+import LinkAcquirer from "./routes/LinkAcquirer"
+import Trial from "./routes/trial"
 import UrlCreator from "./CreateurlComponent";
 import PageShower from "./PageComponent";
+
 
 
 const mapStateToProps = (state) => {
@@ -25,7 +28,7 @@ const mapDispatchToProps = (dispatch) => ({
   addUrl: (
     url,
     headertext,
-    headersubtext,
+    headersubtext,  
     bodytext,
     bodyimages,
     footerlinks,
@@ -105,6 +108,8 @@ class Main extends Component {
           <Route path="/sortingpage" component={SortingPage} />
           <Route path="/merchantSignUp" component={MerchantSortingPage} />
           <Route path="/merchantCreateAcc" component={CreateVISAReady} />
+          <Route path="/acquirerlink" component={LinkAcquirer} />
+          <Route path="/trial" component={Trial} />
           <Redirect to="/sortingpage" />
         </Switch>
       </div>

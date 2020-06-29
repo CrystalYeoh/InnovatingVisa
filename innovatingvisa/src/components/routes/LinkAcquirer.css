@@ -1,0 +1,11 @@
+.question{
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.choices {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-evenly;
+}

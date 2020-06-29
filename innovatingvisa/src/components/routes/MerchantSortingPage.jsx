@@ -13,8 +13,9 @@ const CreateVISAReady = (props) => {
             <Link to = "/merchantCreateAcc">
               <Button color="danger" size="lg">Yes</Button>
             </Link>
-            <Button color="primary" size="lg">No</Button>
-            
+            <Link to = "/acquirerlink">
+              <Button color="primary" size="lg">No</Button>
+            </Link>
             
           </div>
         </section>

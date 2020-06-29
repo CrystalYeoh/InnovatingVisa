@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Button, Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
 import './CreateVISAReady.css';
+import axios from 'axios';
 
 class CreateVISAReady extends Component {
   constructor(props) {
@@ -12,23 +13,29 @@ class CreateVISAReady extends Component {
       companyName: '',
       password:'',
       passwordVerify:'',
+      descr: '',
+      addr:'',
+      merchType:'',
+      contactNo:'',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
   }
 
   handleInputChange(event) {
     const target = event.target;
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
-
     this.setState({
       [name]: value,
     });
   }
 
   handleSubmit(event) {
+    axios.post('/merchantSignUp', this.state)
+    .then(function (response) {
+      console.log(response);
+    })
     console.log("Current State is: " + JSON.stringify(this.state));
     alert("Current State is: " + JSON.stringify(this.state));
     event.preventDefault();
@@ -115,6 +122,50 @@ class CreateVISAReady extends Component {
                 onChange={this.handleInputChange}/>
             </FormGroup>
           </Col>
+        </Row>
+        <Row form>
+          <Col md = {6}>
+            <FormGroup>
+              <Label for="addr">Address</Label>
+              <Input 
+                name="addr"
+                id="addr"
+                placeholder="Enter your address here"
+                value={this.state.addr}
+                onChange={this.handleInputChange} />
+            </FormGroup>
+          </Col>
+          <Col>
+            <FormGroup>
+              <Label for="merchantType">Merchant Type</Label>
+              <Input
+                type ="select"
+                name="merchType"
+                id="merchType"
+                placeholder="What is your merchant type?" 
+                value={this.state.merchType}
+                onChange={this.handleInputChange}>
+                <option>Retail</option>
+                <option>Food and Beverage</option>
+                <option>Finance</option>
+              </Input>
+            </FormGroup>
+          </Col>
+        </Row>
+        <Row form>
+          <Col>
+            <FormGroup>
+              <Label for="contactNo">Contact Number</Label>
+              <Input
+                name="contactNo"
+                id="contactNo"
+                placeholder="+65" 
+                value={this.state.contactNo}
+                onChange={this.handleInputChange}>
+              </Input>
+            </FormGroup>
+          </Col>
+          <Col></Col>
         </Row>
         <Row form>
           <Col>
