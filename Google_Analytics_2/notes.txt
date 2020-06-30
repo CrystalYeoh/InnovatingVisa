@@ -1,0 +1,5 @@
+More details can be found here:
+https://dev.to/ramonak/how-to-develop-a-custom-google-analytics-dashboard-using-google-analytics-reporting-api-v4-and-react-js-3k49
+
+Github repo:
+https://github.com/KaterinaLupacheva/react-google-analytics-dashboard
