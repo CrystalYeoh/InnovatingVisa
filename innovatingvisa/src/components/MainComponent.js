@@ -2,92 +2,36 @@ import React, { Component } from "react";
 import { Navbar, NavbarBrand } from "reactstrap";
 import UrlCreator from "./CreateurlComponent";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
-import { connect } from "react-redux";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import { postUrl, fetchUrls, fetchUsers } from "../redux/ActionCreators";
+import axios from "axios";
+import Url from "./UrlComponent";
+import { API_URL } from "../shared/baseUrl";
+import Createstore from "./CreatestoreComponent";
 
-const mapStateToProps = (state) => {
-  return {
-    urls: state.urls,
-    users: state.users,
-  };
-};
-const mapDispatchToProps = (dispatch) => ({
-  addUrl: (
-    url,
-    headertext,
-    headersubtext,
-    bodytext,
-    bodyimages,
-    footerlinks,
-    footertext,
-    socialmediatypes,
-    socialmedialinks
-  ) =>
-    dispatch(
-      postUrl(
-        url,
-        headertext,
-        headersubtext,
-        bodytext,
-        bodyimages,
-        footerlinks,
-        footertext,
-        socialmediatypes,
-        socialmedialinks
-      )
-    ),
-  fetchUrls: () => dispatch(fetchUrls()),
-  fetchUsers: () => dispatch(fetchUsers()),
-  postUrl: (
-    url,
-    headertext,
-    headersubtext,
-    bodytext,
-    bodyimages,
-    footerlinks,
-    footertext,
-    socialmediatypes,
-    socialmedialinks
-  ) =>
-    dispatch(
-      postUrl(
-        url,
-        headertext,
-        headersubtext,
-        bodytext,
-        bodyimages,
-        footerlinks,
-        footertext,
-        socialmediatypes,
-        socialmedialinks
-      )
-    ),
-});
 class Main extends Component {
   constructor(props) {
     super(props);
-    this.state = { apiResponse: "" };
+    this.state = { url: "" };
   }
 
-  componentDidMount() {
-    this.props.fetchUrls();
-  }
   render() {
     const Createurl = () => {
       return <UrlCreator />;
     };
-    console.log(this.state.apiResponse);
+    const Sitewithurl = ({ match }) => {
+      return <Url match={match.params} />;
+    };
+
     return (
       <div>
         <Switch>
           <Route path="/createurl" component={Createurl} />
-
-          <Redirect to="/createurl" />
+          <Route path="/sites/:url" component={Sitewithurl} />
+          <Route path="/createstore" component={Createstore} />
         </Switch>
       </div>
     );
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));
+export default withRouter(Main);

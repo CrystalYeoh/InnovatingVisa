@@ -2,7 +2,28 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Footer(props) {
-  if (props.footertext !== "")
+  const twittercontent = props.twitterchecked ? (
+    <a className="btn btn-social-icon btn-twitter" href={props.twitterurl}>
+      <i className="fa fa-twitter" href={props.twitterurl}></i>
+    </a>
+  ) : null;
+  const facebookcontent = props.facebookchecked ? (
+    <a className="btn btn-social-icon btn-facebook" href={props.facebookurl}>
+      <i className="fa fa-facebook" href={props.twitterurl}></i>
+    </a>
+  ) : null;
+  const instagramcontent = props.instagramchecked ? (
+    <a className="btn btn-social-icon btn-instagram" href="http://twitter.com/">
+      <i className="fa fa-instagram" href={props.twitterurl}></i>
+    </a>
+  ) : null;
+  if (
+    props.footertext !== "" ||
+    props.twitterurl != "" ||
+    props.facebookurl != "" ||
+    props.instagramurl != "" ||
+    props.phonenumber != ""
+  )
     return (
       <div className="footer">
         <div className="container">
@@ -13,40 +34,11 @@ function Footer(props) {
             </div>{" "}
             <div className="col-12 col-sm-4 align-self-center">
               <div className="text-center">
-                <a
-                  className="btn btn-social-icon btn-google"
-                  href="http://google.com/+"
-                >
-                  <i className="fa fa-google-plus"></i>
-                </a>
-                <a
-                  className="btn btn-social-icon btn-facebook"
-                  href="http://www.facebook.com/profile.php?id="
-                >
-                  <i className="fa fa-facebook"></i>
-                </a>
-                <a
-                  className="btn btn-social-icon btn-linkedin"
-                  href="http://www.linkedin.com/in/"
-                >
-                  <i className="fa fa-linkedin"></i>
-                </a>
-                <a
-                  className="btn btn-social-icon btn-twitter"
-                  href="http://twitter.com/"
-                >
-                  <i className="fa fa-twitter" href={props.twitterurl}></i>
-                </a>
-                <a
-                  className="btn btn-social-icon btn-google"
-                  href={props.twitterurl}
-                >
-                  <i className="fa fa-youtube"></i>
-                </a>
-                <a className="btn btn-social-icon" href="mailto:">
-                  <i className="fa fa-envelope-o"></i>
-                </a>
+                {twittercontent}
+                {facebookcontent}
+                {instagramcontent}
               </div>
+              Contact Us at {props.phonenumber}
             </div>
           </div>
         </div>

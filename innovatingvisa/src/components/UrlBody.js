@@ -17,11 +17,13 @@ function UrlBody(props) {
   console.log(props);
 
   for (var index = 0; index < props.bodytextrow; index++) {
-    if (props.bodyimages[index] !== undefined) {
+    if (
+      !(props.bodyimages[index] == "" || props.bodyimages[index] == undefined)
+    ) {
       console.log(props.bodyimages[index]);
       rows.push(
-        <Card id={index}>
-          <Media className>
+        <Card id={index} key={index}>
+          <Media>
             <Media left className="mr-5">
               <Media object src={props.bodyimages[index]} alt="text" />
             </Media>
@@ -35,7 +37,7 @@ function UrlBody(props) {
     } else {
       rows.push(
         <Card id={index}>
-          <Media className>
+          <Media>
             <Media body>
               <Media heading> {props.bodyheading[index]}</Media>
               <p>{props.bodytext[index]}</p>

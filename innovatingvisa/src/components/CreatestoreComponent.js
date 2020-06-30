@@ -18,7 +18,7 @@ import ImageUploading from "react-images-uploading";
 import { API_URL } from "../shared/baseUrl";
 import axios from "axios";
 
-class UrlCreator extends Component {
+class CreateStore extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -228,10 +228,6 @@ class UrlCreator extends Component {
     console.log(this.state.bodytext);
     return (
       <div className="container">
-        <Header
-          headertext={this.state.headertext}
-          headersubtext={this.state.headersubtext}
-        />
         <div className="row row-content">
           <div className="col-12">
             <h3>Website Creator</h3>
@@ -282,6 +278,10 @@ class UrlCreator extends Component {
                     onChange={this.handleInputChange}
                   />
                 </Col>
+                <Header
+                  headertext={this.state.headertext}
+                  headersubtext={this.state.headersubtext}
+                />
               </FormGroup>
               <FormGroup row>
                 <Label htmlFor="headersubtext" md={2}>
@@ -454,4 +454,4 @@ class UrlCreator extends Component {
   }
 }
 
-export default withRouter(UrlCreator);
+export default withRouter(CreateStore);

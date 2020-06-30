@@ -5,7 +5,12 @@ from flask import Flask, json, g, request,jsonify
 from google.cloud import storage
 from sqlalchemy import create_engine
 from flask_cors import CORS
+import random
+import string
 
+def randomString(stringLength=8):
+    letters = string.ascii_lowercase
+    return ''.join(random.choice(letters) for i in range(stringLength))
 
 def sql_GCP_insert(sqlstring):
     engine = create_engine('mysql+pymysql://root:Visa1234@34.87.113.249:3306/testDB')
@@ -73,7 +78,7 @@ def upload():
         bucket = gcs.get_bucket(CLOUD_STORAGE_BUCKET)
 
         # Create a new blob and upload the file's content.
-        blob = bucket.blob(uploaded_file.filename)
+        blob = bucket.blob(randomString())
 
         blob.upload_from_string(
             uploaded_file.read(),
@@ -105,6 +110,49 @@ def postsql():
 
     return 'yay',201
 
+@app.route('/sqlposturl', methods=['POST'])
+def postsqlurl():
+    raw_json = request.get_json()
+    bodyheading=raw_json['bodyheading']
+    bodytext=raw_json['bodytext']
+    bodyimages=raw_json['bodyimages']
+
+    bodytexttext=''
+    bodyheadingtext=''
+    bodyimagestext=''
+    for i in bodyheading:
+        bodyheadingtext+=i+'(split)'
+    for i in bodytext:
+        bodytexttext+=i+'(split)'
+    for i in bodyimages:
+        bodyimagestext+=i+'(split)'
+    sqlstatement="""
+    INSERT INTO testDB.Urls (Url, Headertext, Bodytextrow, Bodyheading, Bodytext, Footertext, Twitterurl, Facebookurl, Instagramurl,Twitterchecked,Facebookchecked,Instagramchecked,Phonenumber,Bodyimages)
+    VALUES ('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')
+    """.format(raw_json['url'],raw_json['headertext'],raw_json['bodytextrow'],bodyheadingtext[:-7],bodytexttext[:-7],raw_json['footertext'],raw_json['twitterurl'],raw_json['facebookurl'],raw_json['instagramurl'],raw_json['twitterchecked'],raw_json['facebookchecked'],raw_json['instagramchecked'],raw_json['phonenumber'],bodyimagestext[:-7])
+    print(sqlstatement)
+    sql_GCP_insert(sqlstatement)
+
+    return 'yay',201
+
+@app.route('/sqlposturlquery', methods=['POST'])
+def postsqlurlquery():
+    raw_json = request.get_json()
+    url=raw_json['url']
+    sqlstatement=f" Select * from testDB.Urls WHERE Url='{url}'"
+    print(sqlstatement)
+
+
+    x=sql_GCP_query(sqlstatement)
+    try:
+        x=x[0]
+        x['Bodytext']=x['Bodytext'].split('(split)')
+        x['Bodyheading']=x['Bodyheading'].split('(split)')
+        x['Bodyimages']=x['Bodyimages'].split('(split)')
+    except:
+        return 'Nth',404
+
+    return x,201
 
 @app.route('/sqlpostquery', methods=['POST'])
 def postsqlquery():
