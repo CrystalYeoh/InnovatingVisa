@@ -3,3 +3,7 @@ https://dev.to/ramonak/how-to-develop-a-custom-google-analytics-dashboard-using-
 
 Github repo:
 https://github.com/KaterinaLupacheva/react-google-analytics-dashboard
+
+Changes on files:
+- Footer can be deleted
+- Change view id in src/report.js
