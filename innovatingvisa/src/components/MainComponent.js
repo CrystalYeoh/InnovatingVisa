@@ -110,7 +110,7 @@ class Main extends Component {
           <Route path="/merchantCreateAcc" component={CreateVISAReady} />
           <Route path="/acquirerlink" component={LinkAcquirer} />
           <Route path="/trial" component={Trial} />
-          <Redirect to="/sortingpage" />
+          <Redirect to="/trial" />
         </Switch>
       </div>
     );
