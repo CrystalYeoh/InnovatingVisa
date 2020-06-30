@@ -1,11 +1,22 @@
 import React, { Component } from "react";
 import { Navbar, NavbarBrand } from "reactstrap";
-import UrlCreator from "./CreateurlComponent";
-import PageShower from "./PageComponent";
+// import Header from "./HeaderComponent";
+// import Footer from "./FooterComponent";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { postUrl, fetchUrls, fetchUsers } from "../redux/ActionCreators";
+//import UrlCreator from "./CreateurlComponent";
+//import PageShower from "./PageComponent";
+import SortingPage from './routes/SortingPage'
+import MerchantSortingPage from "./routes/MerchantSortingPage";
+import CreateVISAReady from "./routes/CreateVISAReady"
+import LinkAcquirer from "./routes/LinkAcquirer"
+import Trial from "./routes/trial"
+import UrlCreator from "./CreateurlComponent";
+import PageShower from "./PageComponent";
+
+
 
 const mapStateToProps = (state) => {
   return {
@@ -17,7 +28,7 @@ const mapDispatchToProps = (dispatch) => ({
   addUrl: (
     url,
     headertext,
-    headersubtext,
+    headersubtext,  
     bodytext,
     bodyimages,
     footerlinks,
@@ -83,22 +94,23 @@ class Main extends Component {
     this.props.fetchUrls();
   }
   render() {
-    const Page = () => {
-      return <PageShower />;
-    };
-    const Createurl = () => {
-      return <UrlCreator />;
-    };
+    // const Page = () => {
+    //   return <PageShower />;
+    // };
+    // const Createurl = () => {
+    //   return <UrlCreator />;
+    // };
     return (
       <div>
         <Switch>
-          <Route path="/createurl" component={Createurl} />
-          <Route
-            path="/url"
-            component={Page}
-            apiresponse={this.state.api.Response}
-          />
-          <Redirect to="/url" />
+          {/* <Route path="/createurl" component={Createurl} />
+          <Route path="/url" component={Page} /> */}
+          <Route path="/sortingpage" component={SortingPage} />
+          <Route path="/merchantSignUp" component={MerchantSortingPage} />
+          <Route path="/merchantCreateAcc" component={CreateVISAReady} />
+          <Route path="/acquirerlink" component={LinkAcquirer} />
+          <Route path="/trial" component={Trial} />
+          <Redirect to="/sortingpage" />
         </Switch>
       </div>
     );
