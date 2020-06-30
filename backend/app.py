@@ -98,14 +98,28 @@ def postsqlquery():
     print(x)
     return x,201
 
-
+# gets all listings from the database
 @app.route('/getAllListings', methods=['POST'])
 def getAllListings():
-    print("OK")
     raw_json = request.get_json()
     sqlstatement="""
     SELECT * FROM testDB.Merchants
     """
+    print(sqlstatement)
+    x=sql_GCP_query(sqlstatement)
+    return x,201
+
+# gets the searched listing from the database
+@app.route('/getSearchListing', methods=['POST'])
+def getSearchListing():
+    raw_json = request.get_json()
+    sqlstatement="""
+    SELECT * FROM testDB.Merchants 
+    WHERE companyName LIKE '%%{}%%'
+    OR descr LIKE '%%{}%%'
+    OR merchType LIKE '%%{}%%'
+    """.format(raw_json['search'], raw_json['search'], raw_json['search'])
+    print(sqlstatement)
     x=sql_GCP_query(sqlstatement)
     print(x)
     return x,201

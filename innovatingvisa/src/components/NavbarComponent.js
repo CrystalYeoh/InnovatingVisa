@@ -7,11 +7,6 @@ import {
     Nav,
     NavItem,
     NavLink,
-    Form,
-    Input,
-    FormGroup,
-    Button,
-    Label,
   } from 'reactstrap';
 
 const MyNavbar = (props) => {
@@ -34,14 +29,7 @@ const MyNavbar = (props) => {
               </NavItem>
             </Nav>
           </Collapse>
-          <Form inline>
-            <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-              <Label for="search" className="mr-sm-2">Search:</Label>
-              <Input type="Search" name="Search:" id="search" placeholder="" />
-              <Button variant="outline-success">Search</Button>
-            </FormGroup>
-            
-          </Form>
+          
         </Navbar>
       </div>
     );
