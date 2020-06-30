@@ -26,7 +26,7 @@ import json
 from src.apis.merchant_benchmark_api import MerchantBenchmarkApi
 from src.configuration import Configuration
 
-sys.path.append('../')
+
 from globalConfig import GlobalConfig
 
 

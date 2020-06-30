@@ -5,19 +5,10 @@ from flask import Flask, request
 from google.cloud import storage
 from sqlalchemy import create_engine
 from flask_cors import CORS
-from __future__ import print_function
-import time
-from src.apis.merchant_benchmark_api import MerchantBenchmarkApi
-from src.configuration import Configuration
+import json
 
-config = Configuration()
-config.username = 'N2OJZRQQFD6BTH5VJOK721dvADC3Oqj3RJBr4SFQpP9PB2ULo'
-config.password = 'tzmw7eQS26mr8'
-config.cert_file = '/absolute/path/to/cert.pem'
-config.key_file = '/absolute/path/to/key_90012af2-1e19-491c-b9e6-6aba4341f37c.pem'
-config.ssl_ca_cert = '/absolute/path/to/DigiCertGlobalRootCA.crt'
-
-
+from merchant_measurement.merchant_benchmark_api.src.configuration import Configuration
+from merchant_measurement.merchant_benchmark_api.src.apis.merchant_benchmark_api import MerchantBenchmarkApi
 
 def sql_GCP_insert(sqlstring):
     engine = create_engine('mysql+pymysql://root:Visa1234@34.87.113.249:3306/testDB')
@@ -100,10 +91,23 @@ def postsql():
 
     return 'yay',201
 
+@app.route('/merchantapi', methods=['POST'])
+def call_merchant_api():
+    config = Configuration()
+    config.username = 'N2OJZRQQFD6BTH5VJOK721dvADC3Oqj3RJBr4SFQpP9PB2ULo'
+    config.password = 'tzmw7eQS26mr8'
+    config.cert_file = '/merchant_measurement/merchant_benchmark_api/certs/cert.pem'
+    config.key_file = '/merchant_measurement/merchant_benchmark_api/certs/key_90012af2-1e19-491c-b9e6-6aba4341f37c.pem'
+    config.ssl_ca_cert = '/merchant_measurement/merchant_benchmark_api/certs/DigiCertGlobalRootCA.crt'
+    api = MerchantBenchmarkApi(None)
+    
+    x = api.postmerchant_benchmark(json.loads('{"requestData":{"groupList":["STANDARD","CARDHOLDER","CBREASONCODE"],"msaList":["7362"],"merchantCategoryCodeList":["5812"],"posEntryModeList":["All"],"postalCodeList":[""],"countrySubdivisionList":[""],"cardPresentIndicator":"CARDPRESENT","accountFundingSourceList":["ALl"],"eciIndicatorList":["All"],"merchantCategoryGroupsCodeList":[""],"monthList":["201706"],"platformIDList":["All"],"merchantCountry":"840","naicsCodeList":[""]},"requestHeader":{"messageDateTime":"2016-01-15T01:02:31.327Z","requestMessageId":"6da60e1b8b024532a2e0eacb1af58581"}}'))
+    print(x)
+    return x,201
+
 @app.route('/merchantSignUp', methods=['POST'])
 def merchant_signup():
     raw_json = request.get_json()
-    print(raw_json)
     sqlstatement="""
     INSERT INTO testDB.Merchants (firstName, lastName, email, companyName, password, descr, addr, merchType, contactNo)
     VALUES ('{}','{}','{}','{}','{}','{}','{}','{}','{}')
