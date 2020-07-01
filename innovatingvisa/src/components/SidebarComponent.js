@@ -4,7 +4,6 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 
 function Sidebar({ items }) {
-  console.log(items);
   return (
     <div className="sidebar">
       <List disablePadding dense>

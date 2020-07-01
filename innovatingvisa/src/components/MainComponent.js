@@ -16,6 +16,7 @@ import LinkAcquirer from "./routes/LinkAcquirer";
 import Trial from "./routes/trial";
 import Dashboard from "./DashboardComponent";
 import MyNavbar from "./NavbarComponent";
+import Dashboardga from "./dashboardga";
 
 class Main extends Component {
   constructor(props) {
@@ -62,6 +63,7 @@ class Main extends Component {
           <Route path="/trial" component={Trial} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/stores/:url" component={Storewithurl} />
+          <Route path="/gadashboard" component={Dashboardga} />
 
           <Redirect to="/sortingpage" />
         </Switch>
