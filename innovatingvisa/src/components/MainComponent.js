@@ -15,7 +15,8 @@ import LinkAcquirer from "./routes/LinkAcquirer"
 import Trial from "./routes/trial"
 import UrlCreator from "./CreateurlComponent";
 import PageShower from "./PageComponent";
-
+import MyNavbar from "./NavbarComponent";
+import Dashboard from "./DashboardComponent";
 
 
 const mapStateToProps = (state) => {
