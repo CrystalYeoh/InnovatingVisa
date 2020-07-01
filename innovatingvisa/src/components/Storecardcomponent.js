@@ -17,7 +17,7 @@ function Storecard(props) {
   console.log(props["item"]);
 
   return (
-    <Card>
+    <Card id="storecard">
       <CardImg
         top
         width="100%"

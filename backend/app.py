@@ -143,11 +143,16 @@ def postsqlurl():
         bodytexttext+=i+'(split)'
     for i in bodyimages:
         bodyimagestext+=i+'(split)'
+    print(raw_json)
     sqlstatement="""
     INSERT INTO testDB.Urls (Url, Headertext, Bodytextrow, Bodyheading, Bodytext, Footertext, Twitterurl, Facebookurl, Instagramurl,Twitterchecked,Facebookchecked,Instagramchecked,Phonenumber,Bodyimages,Headersubtext,frontimage)
-    VALUES ('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')
-    """.format(raw_json['url'],raw_json['headertext'],raw_json['bodytextrow'],bodyheadingtext[:-7],bodytexttext[:-7],raw_json['footertext'],raw_json['twitterurl'],raw_json['facebookurl'],raw_json['instagramurl'],raw_json['twitterchecked'],raw_json['facebookchecked'],raw_json['instagramchecked'],raw_json['phonenumber'],bodyimagestext[:-7],raw_json[:'headersubtext'],raw_json['frontimage'])
+    VALUES ('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')
+    """.format(raw_json['url'],raw_json['headertext'],raw_json['bodytextrow'],bodyheadingtext[:-7],bodytexttext[:-7],raw_json['footertext'],raw_json['twitterurl'],raw_json['facebookurl'],raw_json['instagramurl'],raw_json['twitterchecked'],raw_json['facebookchecked'],raw_json['instagramchecked'],raw_json['phonenumber'],bodyimagestext[:-7],raw_json['headersubtext'],raw_json['frontimage'])
     print(sqlstatement)
+    sql_GCP_insert(sqlstatement)
+
+    return 'yay',201
+
 @app.route('/merchantSignUp', methods=['POST'])
 def merchant_signup():
     raw_json = request.get_json()
@@ -188,8 +193,8 @@ def additem():
     raw_json = request.get_json()
     print(raw_json)
     sqlstatement="""
-    INSERT INTO testDB.Items (category, itemname, price,description,tag,image,foreignid)
-    VALUES ('{}','{}','{}','{}','{}','{}','{}')
+    INSERT INTO testDB.Items (category, itemname, price,description,tag,image,foreignid,quantity)
+    VALUES ('{}','{}','{}','{}','{}','{}','{}','{}')
     """.format(raw_json['category'],raw_json['itemname'],raw_json['price'],raw_json['description'],raw_json['tag'],raw_json['image'],raw_json['urlselectedid'],raw_json['quantity'])
     print(sqlstatement)
     sql_GCP_insert(sqlstatement)

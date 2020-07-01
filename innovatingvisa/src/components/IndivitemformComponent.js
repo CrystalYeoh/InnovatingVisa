@@ -78,11 +78,9 @@ class Itemstore extends Component {
 
       .then((res) => {
         console.log(res.data);
-        console.log(this.state.bodytext);
 
         console.log(res.data);
         //handle success
-        console.log(this.state.bodytext);
         this.setState({
           image: res.data[0],
         });
@@ -112,7 +110,38 @@ class Itemstore extends Component {
               />
             </Col>
           </FormGroup>
-
+          <FormGroup row>
+            <ImageUploading
+              onChange={this.onChangeimage}
+              maxNumber={1}
+              multiple
+              maxFileSize={this.state.maxMbFileSize}
+              acceptType={["jpg", "gif", "png"]}
+            >
+              {({ imageList, onImageUpload, onImageRemoveAll }) => (
+                // write your building UI
+                <div>
+                  <button type="button" onClick={onImageUpload}>
+                    Upload images
+                  </button>
+                  <button type="button" onClick={onImageRemoveAll}>
+                    Remove all images
+                  </button>
+                  {imageList.map((image) => (
+                    <div key={image.key}>
+                      <img src={image.dataURL} />
+                      <button type="button" onClick={image.onUpdate}>
+                        Update
+                      </button>
+                      <button type="button" onClick={image.onRemove}>
+                        Remove
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </ImageUploading>
+          </FormGroup>
           <FormGroup row>
             <Label htmlFor="price" md={2}>
               Price
@@ -191,38 +220,6 @@ class Itemstore extends Component {
                 onChange={this.handleInputChange}
               />
             </Col>
-          </FormGroup>
-          <FormGroup row>
-            <ImageUploading
-              onChange={this.onChangeimage}
-              maxNumber={1}
-              multiple
-              maxFileSize={this.state.maxMbFileSize}
-              acceptType={["jpg", "gif", "png"]}
-            >
-              {({ imageList, onImageUpload, onImageRemoveAll }) => (
-                // write your building UI
-                <div>
-                  <button type="button" onClick={onImageUpload}>
-                    Upload images
-                  </button>
-                  <button type="button" onClick={onImageRemoveAll}>
-                    Remove all images
-                  </button>
-                  {imageList.map((image) => (
-                    <div key={image.key}>
-                      <img src={image.dataURL} />
-                      <button type="button" onClick={image.onUpdate}>
-                        Update
-                      </button>
-                      <button type="button" onClick={image.onRemove}>
-                        Remove
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </ImageUploading>
           </FormGroup>
 
           <FormGroup row>

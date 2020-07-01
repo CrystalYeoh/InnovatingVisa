@@ -9,7 +9,7 @@ import {
   Form,
   FormGroup,
 } from "reactstrap";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 import Itemstore from "./IndivitemformComponent";
 import _ from "lodash";
@@ -144,7 +144,7 @@ class Updatestore extends Component {
             <Form onSubmit={this.handleSubmit}>
               <FormGroup row>
                 <Label htmlFor="urlselected" md={2}>
-                  Url to add to
+                  Url Selection
                 </Label>
                 <Col md={{ size: 3, offset: 1 }}>
                   <Input
@@ -179,17 +179,11 @@ class Updatestore extends Component {
                   <Button type="submit" color="danger">
                     Delete Item
                   </Button>
-                  <Button
-                    type="button"
-                    color="primary"
-                    onClick={() => {
-                      this.props.history.push(
-                        "/stores/".concat(this.state.urlselected)
-                      );
-                    }}
-                  >
-                    Go to Store
-                  </Button>
+                  <Link to={"/stores/".concat(this.state.urlselected)}>
+                    <Button type="button" color="primary">
+                      Go to Store
+                    </Button>
+                  </Link>
                 </Col>
               </FormGroup>
             </Form>

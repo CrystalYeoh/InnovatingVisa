@@ -8,6 +8,8 @@ import {
   Row,
   Form,
   FormGroup,
+  Breadcrumb,
+  BreadcrumbItem,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import Header from "./UrlHeaderComponent";
@@ -36,15 +38,30 @@ class Url extends Component {
         <Header
           headertext={this.state.url.Headertext}
           headersubtext={this.state.url.Headersubtext}
+          image={this.state.url.frontimage}
         />
-
-        <UrlBody
-          bodytext={this.state.url.Bodytext}
-          bodytextrow={this.state.url.Bodytextrow}
-          bodyheading={this.state.url.Bodyheading}
-          bodyimages={this.state.url.Bodyimages}
-        />
-
+        <div>
+          <Breadcrumb>
+            <BreadcrumbItem active>
+              <a>Home</a>
+            </BreadcrumbItem>
+            <BreadcrumbItem active>
+              <Link to={"/stores/".concat(this.props.match["url"])}>Store</Link>
+            </BreadcrumbItem>
+          </Breadcrumb>
+        </div>
+        <div className="container">
+          <div className="row row-content">
+            <div className="col-12">
+              <UrlBody
+                bodytext={this.state.url.Bodytext}
+                bodytextrow={this.state.url.Bodytextrow}
+                bodyheading={this.state.url.Bodyheading}
+                bodyimages={this.state.url.Bodyimages}
+              />
+            </div>
+          </div>
+        </div>
         <Footer
           footertext={this.state.url.Footertext}
           facebookurl={this.state.url.Facebookurl}

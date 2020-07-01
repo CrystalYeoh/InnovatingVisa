@@ -11,14 +11,16 @@
 }
 
 .footer {
-  background-color: #d1c4e9;
+  background-color: #003fdc;
   margin: 0px auto;
   padding: 20px 0px 20px 0px;
 }
 .jumbotron {
   padding: 70px 30px 70px 30px;
-  margin: 0px auto;
-  background: #9575cd;
+  margin: 20px auto;
+  margin-bottom: 30px;
+
+  background: #ff0000;
   color: floralwhite;
 }
 
@@ -57,8 +59,17 @@ address {
   height: 15vw;
   padding: 10px 10px 10px 10px;
 }
-.media-object {
-  width: 100px;
-  height: 300px;
-  padding: 10px 10px 10px 10px;
+
+.sidebar {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#jumtronimage {
+  float: left;
+  width: 120px;
+  padding: 10px;
+}
+#storecard {
+  width: 300px;
+  height: 500px;
 }
