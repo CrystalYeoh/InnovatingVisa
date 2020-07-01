@@ -1,0 +1,7 @@
+flask
+google-cloud-storage
+google-api-python-client
+sqlalchemy
+gunicorn
+pymysql
+jsonify
