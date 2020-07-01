@@ -105,8 +105,10 @@ def merchant_signup():
 def visa_login():
     raw_json = request.get_json()
     print(raw_json)
-    sqlstatement=""" """
+    sqlstatement=""" INSERT INTO testDB.UserLogin (userName, password)
+    VALUES ('{}','{}')""".format(raw_json['userName'],raw_json['password'])
     sql_GCP_insert(sqlstatement)
+    
     return 'wabalabadubdub',201
 
 @app.route('/sqlpostquery', methods=['POST'])

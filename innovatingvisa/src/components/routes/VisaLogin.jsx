@@ -43,18 +43,18 @@ class VisaLogin extends Component {
               <FormGroup className="userName">
                 <Label for="userName"> Username </Label>
                 <Input type="name"
-                name="username"
-                id="username"
+                name="userName"
+                id="userName"
                 placeholder="Username"
                 value={this.state.userName}
                 onChange={this.handleInputChange} />
               </FormGroup>
             </Col>
           </Row>
-          <Row form> 
+          <Row form>
             <Col md = {6}>
               <FormGroup className="password">
-                <Label for="password"> Username </Label>
+                <Label for="password"> Password </Label>
                 <Input type="name"
                 name="password"
                 id="password"
