@@ -39,9 +39,9 @@ class VisaLogin extends Component {
         <h1 className = 'heading'> Log in </h1>
         <Form className="form">
           <Row form>
-            <Col md = {6}>
+            <Col md = {6} className="mx-auto">
               <FormGroup className="email">
-                <Label for="email"> Username </Label>
+                <Label for="email"> email </Label>
                 <Input type="email"
                 name="email"
                 id="email"
@@ -50,12 +50,12 @@ class VisaLogin extends Component {
                 onChange={this.handleInputChange} />
               </FormGroup>
             </Col>
-          </Row>  
+          </Row>
           <Row form>
-            <Col md = {6}>
+            <Col md = {6} className="mx-auto">
               <FormGroup className="password">
                 <Label for="password"> Password </Label>
-                <Input type="name"
+                <Input type="password"
                 name="password"
                 id="password"
                 placeholder="****"

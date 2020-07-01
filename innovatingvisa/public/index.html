@@ -28,7 +28,8 @@
       });
       V.on("payment.success", function(payment) {
       console.log(payment);
-      document.write("payment.success: \n" + JSON.stringify(payment));
+      return payment;
+      //document.write("payment.success: \n" + JSON.stringify(payment));
       });
       V.on("payment.cancel", function(payment) {
       console.log(payment);

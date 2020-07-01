@@ -106,9 +106,9 @@ def customer_signup():
     raw_json = request.get_json()
     print(raw_json)
     sqlstatement="""
-    INSERT INTO testDB.UserLogin (firstName, lastName, email, password, contactNo)
-    VALUES ('{}','{}','{}','{}','{}')
-    """.format(raw_json['firstName'],raw_json['lastName'],raw_json['email'],raw_json['companyName'],raw_json['password'],raw_json['contactNo'])
+    INSERT INTO testDB.Consumers (email, password,id)
+    VALUES ('{}','{}','{}')
+    """.format(raw_json['email'],raw_json['password'],'2')
     sql_GCP_insert(sqlstatement)
 
     return 'wabalabadubdub',201
