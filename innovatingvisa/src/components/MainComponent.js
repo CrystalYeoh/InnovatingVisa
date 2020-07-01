@@ -111,7 +111,7 @@ class Main extends Component {
           <Route path="/acquirerlink" component={LinkAcquirer} />
           <Route path="/trial" component={Trial} />
           <Route path='/visaLogin' component={VisaLogin} />
-          <Redirect to="/sortingpage" />
+          <Redirect to="/visaLogin" />
         </Switch>
       </div>
     );
