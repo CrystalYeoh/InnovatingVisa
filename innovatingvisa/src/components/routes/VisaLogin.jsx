@@ -70,7 +70,7 @@ class VisaLogin extends Component {
             <Row form>
               <Col>
                 <FormGroup className='register'>
-                  <Button  type = "submit" color="primary" onClick = {this.handleSubmit}>Register</Button>
+                  <Button  type = "submit" color="primary" onClick = {this.handleSubmit}>Login</Button>
                 </FormGroup>
               </Col>
             </Row>

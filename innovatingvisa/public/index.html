@@ -18,30 +18,30 @@
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <script type="text/javascript">
       window.DATA = 0;
-      function onVisaCheckoutReady() {
-      V.init( {
-      apikey: "C4GI1FOHEIH601ILQACF215ZGx7iAeDkbd_BgOfm7C-jdRv_8",
-      externalProfileId: "SYSTEMDEFAULT",
-      paymentRequest: {
-      currencyCode: "USD",
-      subtotal: "20.00"
-      }
-      });
-      V.on("payment.success", function(payment) {
-      console.log("sucess"+JSON.stringify(payment));
-      window.DATA=1;
-      return payment;
-      //document.write("payment.success: \n" + JSON.stringify(payment));
-      });
-      V.on("payment.cancel", function(payment) {
-      console.log(payment);
-      document.write("payment.cancel: \n" + JSON.stringify(payment));
-      });
-      V.on("payment.error", function(payment, error) {
-      console.log(payment);
-      document.write("payment.error: \n" + JSON.stringify(payment) + "\n" + JSON.stringify(error));
-      });
-      }
+      // function onVisaCheckoutReady() {
+      // V.init( {
+      // apikey: "C4GI1FOHEIH601ILQACF215ZGx7iAeDkbd_BgOfm7C-jdRv_8",
+      // externalProfileId: "SYSTEMDEFAULT",
+      // paymentRequest: {
+      // currencyCode: "USD",
+      // subtotal: "20.00"
+      // }
+      // });
+      // V.on("payment.success", function(payment) {
+      // console.log("sucess"+JSON.stringify(payment));
+      // window.DATA=1;
+      // return payment;
+      // //document.write("payment.success: \n" + JSON.stringify(payment));
+      // });
+      // V.on("payment.cancel", function(payment) {
+      // console.log(payment);
+      // document.write("payment.cancel: \n" + JSON.stringify(payment));
+      // });
+      // V.on("payment.error", function(payment, error) {
+      // console.log(payment);
+      // document.write("payment.error: \n" + JSON.stringify(payment) + "\n" + JSON.stringify(error));
+      // });
+      // }
     </script>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
