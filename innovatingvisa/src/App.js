@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Main from "./components/MainComponent";
-import { BrowserRouter } from "react-router-dom";
+import { Router } from "react-router-dom";
 import ReactGA from "react-ga";
 import { createBrowserHistory } from "history";
 import "./App.css";
@@ -17,11 +17,11 @@ class App extends Component {
       ReactGA.pageview(location.pathname); // Record a pageview for the given page
     });
     return (
-      <BrowserRouter history={history}>
+      <Router history={history}>
         <div className="App">
           <Main />
         </div>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
