@@ -83,7 +83,7 @@ class VisaLogin extends Component {
 
 
           <Row form>
-          <Login className ="visa" hrefs={this.state.hrefs}/>
+          <Login className ="visa" />
           </Row>
 
           <Row form>

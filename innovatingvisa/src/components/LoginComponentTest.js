@@ -7,10 +7,10 @@ import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 class Login extends Component{
     constructor(props){
         super(props);
-        this.state = {
-        hrefs : './CustomerSignUp',
-      };
-        console.log(this.state.hrefs);
+      //   this.state = {
+      //   hrefs : './CustomerSignUp',
+      // };
+      //   console.log(this.state.hrefs);
         this.onVisaCheckoutReady = this.onVisaCheckoutReady.bind(this);
     }
 
@@ -27,7 +27,6 @@ class Login extends Component{
     window.V.on("payment.success", function(payment) {
     console.log("sucess 2"+JSON.stringify(payment));
     // document.write("payment.success: \n" + JSON.stringify(payment));
-    console.log(this.state.hrefs);
     window.location.href = './CustomerSignUp';
     });
     window.V.on("payment.cancel", function(payment) {
