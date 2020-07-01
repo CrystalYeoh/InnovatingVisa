@@ -10,7 +10,10 @@ const SortingPage = (props) => {
           <h1 >Would you like to sell or to buy?</h1>
         </div>
         <div id="choices">
-          <Button color="danger" size="lg">Buy</Button>
+          <Link to ="/dashboard">
+            <Button color="danger" size="lg">Buy</Button>
+          </Link>
+          
           <Link to ="/merchantSignUp">
             <Button color="primary" size="lg">Sell</Button>
           </Link>

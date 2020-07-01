@@ -11,8 +11,10 @@ import { postUrl, fetchUrls, fetchUsers } from "../redux/ActionCreators";
 import SortingPage from './routes/SortingPage'
 import MerchantSortingPage from "./routes/MerchantSortingPage";
 import CreateVISAReady from "./routes/CreateVISAReady"
-import LinkAcquirer from "./routes/LinkAcquirer"
-import Trial from "./routes/trial"
+import LinkAcquirer from "./routes/LinkAcquirer";
+import Trial from "./routes/trial";
+import Dashboard from "./DashboardComponent";
+import MyNavbar from "./NavbarComponent";
 import UrlCreator from "./CreateurlComponent";
 import PageShower from "./PageComponent";
 
