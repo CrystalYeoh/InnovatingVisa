@@ -9,9 +9,9 @@ import { API_URL } from "../shared/baseUrl";
 import Createstore from "./CreatestoreComponent";
 import Updatestore from "./Storeupdater";
 import Store from "./Storecomponent";
-import SortingPage from './routes/SortingPage'
+import SortingPage from "./routes/SortingPage";
 import MerchantSortingPage from "./routes/MerchantSortingPage";
-import CreateVISAReady from "./routes/CreateVISAReady"
+import CreateVISAReady from "./routes/CreateVISAReady";
 import LinkAcquirer from "./routes/LinkAcquirer";
 import Trial from "./routes/trial";
 import Dashboard from "./DashboardComponent";
@@ -35,7 +35,6 @@ class Main extends Component {
     };
 
     return (
-      
       <div>
         <MyNavbar />
         <Switch>
@@ -62,6 +61,8 @@ class Main extends Component {
           <Route path="/acquirerlink" component={LinkAcquirer} />
           <Route path="/trial" component={Trial} />
           <Route path="/dashboard" component={Dashboard} />
+          <Route path="/stores/:url" component={Storewithurl} />
+
           <Redirect to="/sortingpage" />
         </Switch>
       </div>

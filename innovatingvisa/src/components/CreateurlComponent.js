@@ -17,6 +17,7 @@ import _ from "lodash";
 import ImageUploading from "react-images-uploading";
 import { API_URL } from "../shared/baseUrl";
 import axios from "axios";
+import Urlmainimage from "./Uploadurlimage";
 
 class UrlCreator extends Component {
   constructor(props) {
@@ -38,11 +39,20 @@ class UrlCreator extends Component {
       maxMbFileSize: 5 * 1024 * 1024, // 5Mb
       instagramurl: "",
       phonenumber: "",
+      frontimage: "",
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onChangeimage = this.onChangeimage.bind(this);
+    this.myCallback = this.myCallback.bind(this);
+  }
+
+  myCallback(dataFromChild) {
+    this.setState({
+      frontimage: dataFromChild,
+    });
+    console.log(this.state);
   }
 
   handleInputChange(event) {
@@ -253,6 +263,7 @@ class UrlCreator extends Component {
                   />
                 </Col>
               </FormGroup>
+              <Urlmainimage callbackFromParent={this.myCallback} />
               <FormGroup row>
                 <Label htmlFor="headertext" md={2}>
                   Headertext
@@ -307,7 +318,7 @@ class UrlCreator extends Component {
                   </Input>
                 </Col>
               </FormGroup>
-
+              Body image Upload
               <ImageUploading
                 onChange={this.onChangeimage}
                 maxNumber={this.state.bodytextrow}
@@ -346,7 +357,6 @@ class UrlCreator extends Component {
                 bodyheading={this.state.bodyheading}
                 bodyimages={this.state.bodyimages}
               />
-
               <FormGroup row>
                 <Label htmlFor="footertext" md={2}>
                   Footertext
@@ -361,7 +371,6 @@ class UrlCreator extends Component {
                   ></Input>
                 </Col>
               </FormGroup>
-
               <FormGroup row>
                 <Label htmlFor="phonenumber" md={2}>
                   Phone Number
@@ -376,7 +385,6 @@ class UrlCreator extends Component {
                   ></Input>
                 </Col>
               </FormGroup>
-
               <h4>Social Media</h4>
               <FormGroup row>
                 <Col md={{ size: 6, offset: 2 }}>
@@ -394,7 +402,6 @@ class UrlCreator extends Component {
                 </Col>
               </FormGroup>
               {facebookcontent}
-
               <FormGroup row>
                 <Col md={{ size: 6, offset: 2 }}>
                   <FormGroup check>
@@ -411,7 +418,6 @@ class UrlCreator extends Component {
                 </Col>
               </FormGroup>
               {twittercontent}
-
               <FormGroup row>
                 <Col md={{ size: 6, offset: 2 }}>
                   <FormGroup check>
@@ -428,7 +434,6 @@ class UrlCreator extends Component {
                 </Col>
               </FormGroup>
               {instagramcontent}
-
               <FormGroup row>
                 <Col md={{ size: 10, offset: 2 }}>
                   <Button type="submit" color="primary">
