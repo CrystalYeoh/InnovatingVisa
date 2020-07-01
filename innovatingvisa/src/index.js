@@ -1,8 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "font-awesome/css/font-awesome.css";
+<<<<<<< HEAD
 import "bootstrap-social/bootstrap-social.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+=======
+import 'bootstrap/dist/css/bootstrap.min.css';
+//import "bootstrap-social/bootstrap-social.css";
+>>>>>>> master
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
