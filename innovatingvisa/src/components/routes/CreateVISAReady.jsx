@@ -24,6 +24,7 @@ class CreateVISAReady extends Component {
 
   handleInputChange(event) {
     const target = event.target;
+    console.log(target);
     const value = target.type === "checkbox" ? target.checked : target.value;
     const name = target.name;
     this.setState({
@@ -49,11 +50,11 @@ class CreateVISAReady extends Component {
           <Col md = {6}>
             <FormGroup className="firstName">
               <Label for="firstName" >First Name</Label>
-              <Input 
+              <Input
                 type="name"
-                name="firstName" 
-                id="firstName" 
-                placeholder="John" 
+                name="firstName"
+                id="firstName"
+                placeholder="John"
                 value={this.state.firstName}
                 onChange={this.handleInputChange} />
             </FormGroup>
@@ -61,9 +62,9 @@ class CreateVISAReady extends Component {
           <Col md = {6}>
             <FormGroup className="lastName">
               <Label for="lastName">Last Name</Label>
-              <Input 
+              <Input
                 type="name"
-                name="lastName" 
+                name="lastName"
                 id="lastName"
                 placeholder="Smith"
                 value={this.state.lastName}
@@ -72,10 +73,10 @@ class CreateVISAReady extends Component {
           </Col>
         </Row>
         <Row form>
-        <Col md = {6}> 
+        <Col md = {6}>
             <FormGroup>
               <Label for="email">Email</Label>
-              <Input 
+              <Input
                 type="email"
                 name="email"
                 id="email"
@@ -87,7 +88,7 @@ class CreateVISAReady extends Component {
           <Col md = {6}>
             <FormGroup>
               <Label for="companyName">Company Name</Label>
-              <Input 
+              <Input
                 type="name"
                 name="companyName"
                 id="companyName"
@@ -101,7 +102,7 @@ class CreateVISAReady extends Component {
           <Col md = {6}>
             <FormGroup>
               <Label for="password">Password</Label>
-              <Input 
+              <Input
                 type="password"
                 name="password"
                 id="password"
@@ -113,11 +114,11 @@ class CreateVISAReady extends Component {
           <Col>
             <FormGroup>
               <Label for="passwordVerify">Verify Password</Label>
-              <Input 
+              <Input
                 type="password"
                 name="passwordVerify"
                 id="passwordVerify"
-                placeholder="Verify your password" 
+                placeholder="Verify your password"
                 value={this.state.passwordVerify}
                 onChange={this.handleInputChange}/>
             </FormGroup>
@@ -127,7 +128,7 @@ class CreateVISAReady extends Component {
           <Col md = {6}>
             <FormGroup>
               <Label for="addr">Address</Label>
-              <Input 
+              <Input
                 name="addr"
                 id="addr"
                 placeholder="Enter your address here"
@@ -142,7 +143,7 @@ class CreateVISAReady extends Component {
                 type ="select"
                 name="merchType"
                 id="merchType"
-                placeholder="What is your merchant type?" 
+                placeholder="What is your merchant type?"
                 value={this.state.merchType}
                 onChange={this.handleInputChange}>
                 <option>Retail</option>
@@ -159,7 +160,7 @@ class CreateVISAReady extends Component {
               <Input
                 name="contactNo"
                 id="contactNo"
-                placeholder="+65" 
+                placeholder="+65"
                 value={this.state.contactNo}
                 onChange={this.handleInputChange}>
               </Input>
@@ -181,4 +182,3 @@ class CreateVISAReady extends Component {
   }
 }
 export default  CreateVISAReady
-  

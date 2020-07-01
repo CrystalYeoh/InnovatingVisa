@@ -15,7 +15,7 @@ import LinkAcquirer from "./routes/LinkAcquirer"
 import Trial from "./routes/trial"
 import UrlCreator from "./CreateurlComponent";
 import PageShower from "./PageComponent";
-
+import VisaLogin from "./routes/VisaLogin"
 
 
 const mapStateToProps = (state) => {
@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch) => ({
   addUrl: (
     url,
     headertext,
-    headersubtext,  
+    headersubtext,
     bodytext,
     bodyimages,
     footerlinks,
@@ -110,6 +110,7 @@ class Main extends Component {
           <Route path="/merchantCreateAcc" component={CreateVISAReady} />
           <Route path="/acquirerlink" component={LinkAcquirer} />
           <Route path="/trial" component={Trial} />
+          <Route path='/visaLogin' component={VisaLogin} />
           <Redirect to="/sortingpage" />
         </Switch>
       </div>

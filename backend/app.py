@@ -101,6 +101,13 @@ def merchant_signup():
 
     return 'yay',201
 
+@app.route('/visaLogin',methods=['POST'])
+def visa_login():
+    raw_json = request.get_json()
+    print(raw_json)
+    sqlstatement=""" """
+    sql_GCP_insert(sqlstatement)
+    return 'wabalabadubdub',201
 
 @app.route('/sqlpostquery', methods=['POST'])
 def postsqlquery():

@@ -12,7 +12,13 @@ const store = ConfigureStore();
 class App extends Component {
   render() {
     return (
-      <Login />
+      <Provider store={store}>
+        <BrowserRouter>
+          <div className="App">
+            <Main />
+          </div>
+        </BrowserRouter>
+      </Provider>
     );
   }
 }
