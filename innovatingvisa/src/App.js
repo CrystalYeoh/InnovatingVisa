@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Main from "./components/MainComponent";
-import { Router } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import ReactGA from "react-ga";
 import { createBrowserHistory } from "history";
 import "./App.css";
