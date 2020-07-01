@@ -16,7 +16,7 @@ import Trial from "./routes/trial"
 import UrlCreator from "./CreateurlComponent";
 import PageShower from "./PageComponent";
 import VisaLogin from "./routes/VisaLogin"
-
+import CustomerSignUp from './routes/CustomerSignUp'
 
 const mapStateToProps = (state) => {
   return {
@@ -111,6 +111,7 @@ class Main extends Component {
           <Route path="/acquirerlink" component={LinkAcquirer} />
           <Route path="/trial" component={Trial} />
           <Route path='/visaLogin' component={VisaLogin} />
+          <Route path='/customerSignUp' component={CustomerSignUp} />
           <Redirect to="/sortingpage" />
         </Switch>
       </div>
