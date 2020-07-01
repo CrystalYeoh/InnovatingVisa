@@ -27,6 +27,12 @@ const MyNavbar = (props) => {
               <NavItem>
                 <NavLink href="/dashboard">Merchant Listings</NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink href="/createurl">Create Company Website</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/createstore">Create Store</NavLink>
+              </NavItem>
             </Nav>
           </Collapse>
           

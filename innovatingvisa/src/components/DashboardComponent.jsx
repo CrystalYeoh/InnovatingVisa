@@ -1,8 +1,16 @@
 import React from "react";
 
 import Listing from './ListingComponent';
-import {Form, Input, FormGroup, Button, Label} from 'reactstrap';
+import {Form, Input, FormGroup, Button, Label, CardColumns, Row} from 'reactstrap';
 import axios from 'axios'
+import Grid from '@material-ui/core/Grid'
+
+// const useStyles = makeStyles((theme) => ({
+//     control: {
+//       padding: theme.spacing(2),
+//     },
+//   }));
+  
 
 class Dashboard extends React.Component {
     constructor(props) {
@@ -61,23 +69,40 @@ class Dashboard extends React.Component {
             })
     }
 
-
+   
     render() {
         if (this.state.data) {
             console.log(this.state.data)
+            const rows = [<div key="rowempty"></div>];
+            Object.keys(this.state.data).forEach((item, index) => {
+                rows.push(<Listing key={item} listing={this.state.data[index]} />);
+            });
+
             return (
-                <div style={{justifyContent:'center'}}>
-                    <Form inline>
+                <div>
+                    <Form inline style={{display: 'flex', justifyContent: 'center' }}>
                         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                             <Label for="search" className="mr-sm-2">Search:</Label>
                             <Input type="Search" name="search" id="search" placeholder="" onChange={this.handleInputChange}/>
                             <Button variant="outline-success" onClick = {this.handleSubmit}>Search</Button>
                         </FormGroup>
                     </Form>
-                    {this.state.data.map(
+                    
+                        {/* {this.state.data.map(
                         listing => (
-                            <Listing listing={listing} />)
-                    )}
+                            <Listing listing={listing}/>)
+                        )} */}
+                    <div className="container">
+                        <div className="row row-content">
+                            <div>
+                                <Row>
+                                    <div>
+                                        <CardColumns>{rows}</CardColumns>
+                                    </div>
+                                </Row>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             )
         } else {
