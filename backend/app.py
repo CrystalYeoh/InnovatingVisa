@@ -101,6 +101,18 @@ def merchant_signup():
 
     return 'yay',201
 
+@app.route('/customerSignUp', methods=['POST'])
+def customer_signup():
+    raw_json = request.get_json()
+    print(raw_json)
+    sqlstatement="""
+    INSERT INTO testDB.UserLogin (firstName, lastName, email, password, contactNo)
+    VALUES ('{}','{}','{}','{}','{}')
+    """.format(raw_json['firstName'],raw_json['lastName'],raw_json['email'],raw_json['companyName'],raw_json['password'],raw_json['contactNo'])
+    sql_GCP_insert(sqlstatement)
+
+    return 'wabalabadubdub',201
+
 @app.route('/visaLogin',methods=['POST'])
 def visa_login():
     raw_json = request.get_json()
@@ -108,9 +120,10 @@ def visa_login():
     sqlstatement=""" INSERT INTO testDB.UserLogin (userName, password)
     VALUES ('{}','{}')""".format(raw_json['userName'],raw_json['password'])
     sql_GCP_insert(sqlstatement)
-    
+
     return 'wabalabadubdub',201
 
+@app.route
 @app.route('/sqlpostquery', methods=['POST'])
 def postsqlquery():
     raw_json = request.get_json()

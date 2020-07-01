@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Button, Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
 import './VisaLogin.css';
 import axios from 'axios';
-
+import Login from '../LoginComponentTest';
 class VisaLogin extends Component {
   constructor(props){
     super(props);
@@ -63,6 +63,9 @@ class VisaLogin extends Component {
                 onChange={this.handleInputChange} />
               </FormGroup>
             </Col>
+            </Row>
+            <Row form>
+            <Login />
             </Row>
             <Row form>
               <Col>
