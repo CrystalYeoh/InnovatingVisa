@@ -17,6 +17,7 @@
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <script type="text/javascript">
+      window.DATA = 0;
       function onVisaCheckoutReady() {
       V.init( {
       apikey: "C4GI1FOHEIH601ILQACF215ZGx7iAeDkbd_BgOfm7C-jdRv_8",
@@ -27,7 +28,8 @@
       }
       });
       V.on("payment.success", function(payment) {
-      console.log(payment);
+      console.log("sucess"+JSON.stringify(payment));
+      window.DATA=1;
       return payment;
       //document.write("payment.success: \n" + JSON.stringify(payment));
       });
