@@ -62,3 +62,4 @@ typings/
 
 # Intellij config files
 .idea/
+.vscode/launch.json

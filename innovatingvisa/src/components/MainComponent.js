@@ -101,7 +101,9 @@ class Main extends Component {
     //   return <UrlCreator />;
     // };
     return (
+      
       <div>
+        <MyNavbar />
         <Switch>
           {/* <Route path="/createurl" component={Createurl} />
           <Route path="/url" component={Page} /> */}
@@ -110,6 +112,7 @@ class Main extends Component {
           <Route path="/merchantCreateAcc" component={CreateVISAReady} />
           <Route path="/acquirerlink" component={LinkAcquirer} />
           <Route path="/trial" component={Trial} />
+          <Route path="/dashboard" component={Dashboard} />
           <Redirect to="/sortingpage" />
         </Switch>
       </div>

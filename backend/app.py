@@ -4,6 +4,7 @@ import os
 from flask import Flask, request
 from google.cloud import storage
 from sqlalchemy import create_engine
+import jsonify
 from flask_cors import CORS
 
 
@@ -107,7 +108,35 @@ def postsqlquery():
     raw_json = request.get_json()
     sqlstatement=raw_json['sql']
     x=sql_GCP_query(sqlstatement)
+    print(x)
+    return x,201
 
+# gets all listings from the database
+@app.route('/getAllListings', methods=['POST'])
+def getAllListings():
+    raw_json = request.get_json()
+    sqlstatement="""
+    SELECT Headertext, frontimage, Url
+    FROM testDB.Urls
+    """
+    print(sqlstatement)
+    x=sql_GCP_query(sqlstatement)
+    return x,201
+
+# gets the searched listing from the database
+@app.route('/getSearchListing', methods=['POST'])
+def getSearchListing():
+    raw_json = request.get_json()
+    sqlstatement="""
+    SELECT Headertext, frontimage, Url 
+    FROM testDB.Urls
+    WHERE Headertext LIKE '%%{}%%'
+    OR Bodyheading LIKE '%%{}%%'
+    OR Bodytextrow LIKE '%%{}%%'
+    """.format(raw_json['search'], raw_json['search'], raw_json['search'])
+    print(sqlstatement)
+    x=sql_GCP_query(sqlstatement)
+    print(x)
     return x,201
 
 @app.errorhandler(500)
