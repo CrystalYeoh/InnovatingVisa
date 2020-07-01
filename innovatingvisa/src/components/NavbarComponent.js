@@ -33,6 +33,9 @@ const MyNavbar = (props) => {
               <NavItem>
                 <NavLink href="/createstore">Create Store</NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink href="/gadashboard">Google Analytics</NavLink>
+              </NavItem>
             </Nav>
           </Collapse>
           
