@@ -7,7 +7,7 @@ class VisaLogin extends Component {
   constructor(props){
     super(props);
     this.state = {
-      userName:'',
+      email:'',
       password:'',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -40,17 +40,17 @@ class VisaLogin extends Component {
         <Form className="form">
           <Row form>
             <Col md = {6}>
-              <FormGroup className="userName">
-                <Label for="userName"> Username </Label>
-                <Input type="name"
-                name="userName"
-                id="userName"
-                placeholder="Username"
-                value={this.state.userName}
+              <FormGroup className="email">
+                <Label for="email"> Username </Label>
+                <Input type="email"
+                name="email"
+                id="email"
+                placeholder="email"
+                value={this.state.email}
                 onChange={this.handleInputChange} />
               </FormGroup>
             </Col>
-          </Row>
+          </Row>  
           <Row form>
             <Col md = {6}>
               <FormGroup className="password">
@@ -65,7 +65,7 @@ class VisaLogin extends Component {
             </Col>
             </Row>
             <Row form>
-            <Login />
+            <Login className ="visa" />
             </Row>
             <Row form>
               <Col>

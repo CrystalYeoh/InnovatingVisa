@@ -24,7 +24,7 @@ class Login extends Component{
     
     render(){
         return (
-            <CardImg width="100%" className="v-button" src={"https://sandbox.secure.checkout.visa.com/wallet-services-web/xo/button.png"}  alt={"Visa Checkout"} />
+            <CardImg width="100%" className="v-button" src={"https://sandbox.secure.checkout.visa.com/wallet-services-web/xo/button.png"}  width = '150'  height = '80' alt={"Visa Checkout"} />
         );
         }
 }
