@@ -16,70 +16,7 @@ import LinkAcquirer from "./routes/LinkAcquirer";
 import Trial from "./routes/trial";
 import Dashboard from "./DashboardComponent";
 import MyNavbar from "./NavbarComponent";
-import UrlCreator from "./CreateurlComponent";
-import PageShower from "./PageComponent";
-import MyNavbar from "./NavbarComponent";
-import Dashboard from "./DashboardComponent";
 
-
-const mapStateToProps = (state) => {
-  return {
-    urls: state.urls,
-    users: state.users,
-  };
-};
-const mapDispatchToProps = (dispatch) => ({
-  addUrl: (
-    url,
-    headertext,
-    headersubtext,  
-    bodytext,
-    bodyimages,
-    footerlinks,
-    footertext,
-    socialmediatypes,
-    socialmedialinks
-  ) =>
-    dispatch(
-      postUrl(
-        url,
-        headertext,
-        headersubtext,
-        bodytext,
-        bodyimages,
-        footerlinks,
-        footertext,
-        socialmediatypes,
-        socialmedialinks
-      )
-    ),
-  fetchUrls: () => dispatch(fetchUrls()),
-  fetchUsers: () => dispatch(fetchUsers()),
-  postUrl: (
-    url,
-    headertext,
-    headersubtext,
-    bodytext,
-    bodyimages,
-    footerlinks,
-    footertext,
-    socialmediatypes,
-    socialmedialinks
-  ) =>
-    dispatch(
-      postUrl(
-        url,
-        headertext,
-        headersubtext,
-        bodytext,
-        bodyimages,
-        footerlinks,
-        footertext,
-        socialmediatypes,
-        socialmedialinks
-      )
-    ),
-});
 class Main extends Component {
   constructor(props) {
     super(props);
