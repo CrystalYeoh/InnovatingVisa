@@ -127,14 +127,98 @@ def postsqlurl():
     for i in bodyimages:
         bodyimagestext+=i+'(split)'
     sqlstatement="""
-    INSERT INTO testDB.Urls (Url, Headertext, Bodytextrow, Bodyheading, Bodytext, Footertext, Twitterurl, Facebookurl, Instagramurl,Twitterchecked,Facebookchecked,Instagramchecked,Phonenumber,Bodyimages)
+    INSERT INTO testDB.Urls (Url, Headertext, Bodytextrow, Bodyheading, Bodytext, Footertext, Twitterurl, Facebookurl, Instagramurl,Twitterchecked,Facebookchecked,Instagramchecked,Phonenumber,Bodyimages,Headersubtext,frontimage)
     VALUES ('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')
-    """.format(raw_json['url'],raw_json['headertext'],raw_json['bodytextrow'],bodyheadingtext[:-7],bodytexttext[:-7],raw_json['footertext'],raw_json['twitterurl'],raw_json['facebookurl'],raw_json['instagramurl'],raw_json['twitterchecked'],raw_json['facebookchecked'],raw_json['instagramchecked'],raw_json['phonenumber'],bodyimagestext[:-7])
+    """.format(raw_json['url'],raw_json['headertext'],raw_json['bodytextrow'],bodyheadingtext[:-7],bodytexttext[:-7],raw_json['footertext'],raw_json['twitterurl'],raw_json['facebookurl'],raw_json['instagramurl'],raw_json['twitterchecked'],raw_json['facebookchecked'],raw_json['instagramchecked'],raw_json['phonenumber'],bodyimagestext[:-7],raw_json[:'headersubtext'],raw_json['frontimage'])
     print(sqlstatement)
     sql_GCP_insert(sqlstatement)
 
     return 'yay',201
 
+@app.route('/sqlpoststore', methods=['POST'])
+def createstore():
+    raw_json = request.get_json()
+    sqlstatement="""
+    INSERT INTO testDB.storeurl (Url, Headertext, foreignkeyuser)
+    VALUES ('{}','{}','{}')
+    """.format(raw_json['url'],raw_json['headertext'],raw_json['user'])
+    print(sqlstatement)
+    sql_GCP_insert(sqlstatement)
+
+    return 'yay',201
+
+@app.route('/sqlretrieveurl', methods=['POST'])
+def retrievestore():
+    raw_json = request.get_json()
+    print(raw_json)
+    user=raw_json['user']
+    sqlstatement=f" Select Url,id from testDB.storeurl WHERE foreignkeyuser='{user}'"
+    print(sqlstatement)
+    x=sql_GCP_query(sqlstatement)
+
+    return x,201
+
+@app.route('/sqlpostitem', methods=['POST'])
+def additem():
+    raw_json = request.get_json()
+    print(raw_json)
+    sqlstatement="""
+    INSERT INTO testDB.Items (category, itemname, price,description,tag,image,foreignid)
+    VALUES ('{}','{}','{}','{}','{}','{}','{}')
+    """.format(raw_json['category'],raw_json['itemname'],raw_json['price'],raw_json['description'],raw_json['tag'],raw_json['image'],raw_json['urlselectedid'],raw_json['quantity'])
+    print(sqlstatement)
+    sql_GCP_insert(sqlstatement)
+
+    return 'yay',201
+
+
+# @app.route('/sqlpostitemquery', methods=['POST'])
+# def retrieveitems():
+#     raw_json = request.get_json()
+#     user=raw_json['user']
+#     sqlstatement=f" Select itemname from testDB.Items WHERE foreignid='{user}'"
+#     x=sql_GCP_query(sqlstatement)
+#
+#     return x,201
+
+
+@app.route('/deleteitem', methods=['POST'])
+def deleteitem():
+    raw_json = request.get_json()
+    itemname=raw_json['itemselected']
+    print(itemname)
+    sqlstatement=f" Delete from testDB.Items WHERE itemname='{itemname}'"
+
+    print(sqlstatement)
+    sql_GCP_insert(sqlstatement)
+
+    return 'yay',201
+
+@app.route('/sqlpostitemquery', methods=['POST'])
+def retrieveallitems():
+    raw_json = request.get_json()
+    urlid=raw_json['urlselected']
+    print(raw_json)
+    print(urlid)
+    sqlstatement=f" Select * from testDB.Items WHERE foreignid='{urlid}'"
+    print('here')
+    print(sqlstatement)
+    x=sql_GCP_query(sqlstatement)
+    print(x)
+
+    return x,201
+
+@app.route('/sqlretrieveurlid', methods=['POST'])
+def retrieveurlid():
+    raw_json = request.get_json()
+    print(raw_json)
+    url=raw_json['url']
+    sqlstatement=f" Select * from testDB.storeurl WHERE Url='{url}'"
+    print(sqlstatement)
+    x=sql_GCP_query(sqlstatement)
+    print(x)
+
+    return x,201
 @app.route('/sqlposturlquery', methods=['POST'])
 def postsqlurlquery():
     raw_json = request.get_json()

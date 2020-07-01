@@ -26,10 +26,11 @@ class Url extends Component {
       this.setState({
         url: res.data,
       });
+      console.log(this.State);
     });
   }
   render() {
-    console.log(this.props);
+    console.log(this.state);
     return (
       <div>
         <Header

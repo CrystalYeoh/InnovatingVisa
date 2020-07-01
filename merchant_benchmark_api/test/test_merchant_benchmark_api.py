@@ -92,11 +92,11 @@ class TestMerchantBenchmarkApi(unittest.TestCase):
     "messageDateTime": "2020-06-30T10:24:37.327Z"
   },
   "requestData": {
-    "merchantCategoryCodeList": ["5812"],
+    "merchantCategoryCodeList": ["5814"],
     "postalCodeList": [""],
-    "cardPresentIndicator": "CARDPRESENT",
+    "cardPresentIndicator": "ALL",
     "msaList": ["7362"],
-    "accountFundingSourceList": ["ALl"],
+    "accountFundingSourceList": ["ALL"],
     "groupList": ["STANDARD"],
     "posEntryModeList": ["All"],
     "countrySubdivisionList": [""],
@@ -104,7 +104,7 @@ class TestMerchantBenchmarkApi(unittest.TestCase):
     "naicsCodeList": [""],
     "merchantCategoryGroupsCodeList": [""],
     "merchantCountry": "840",
-    "platformIDList": ["All"],
+    "platformIDList": ["ALL"],
     "monthList": ["201706"]
   }
 }"""))
