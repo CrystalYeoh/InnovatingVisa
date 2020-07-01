@@ -113,7 +113,7 @@ class Main extends Component {
           <Route path="/trial" component={Trial} />
           <Route path='/visaLogin' component={VisaLogin} />
           <Route path='/customerSignUp' component={CustomerSignUp} />
-            <Route path='/merchantLogin' component={MerchantLogin} />
+          <Route path='/merchantLogin' component={MerchantLogin} />
           <Redirect to="/visaLogin" />
         </Switch>
       </div>

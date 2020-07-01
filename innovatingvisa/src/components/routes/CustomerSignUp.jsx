@@ -36,12 +36,13 @@ class CustomerSignUp extends Component{
     console.log("Current State is: " + JSON.stringify(this.state));
     alert("Current State is: " + JSON.stringify(this.state));
     event.preventDefault();
+    window.location.href = "./VisaLogin";
   }
 
   render(){
     return (
       <div>
-      <h1 className = 'heading'>Sign up for VISAMarket Account!</h1>
+      <h1 className = 'heading'>Sign up for VISAConsumer Account!</h1>
       <Form  className="form">
         <Row form>
           <Col md = {6}>

@@ -3,15 +3,19 @@ import { Button, Form, FormGroup, Label, Input, Container, Row, Col } from 'reac
 import './VisaLogin.css';
 import axios from 'axios';
 import Login from '../LoginComponentTest';
+import {Redirect} from 'react-router-dom';
+
 class VisaLogin extends Component {
   constructor(props){
     super(props);
     this.state = {
       email:'',
       password:'',
+      hrefs:'./CustomerSignUp',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.consumerSignUp = this.consumerSignUp.bind(this);
   }
   handleInputChange(event) {
     const target = event.target;
@@ -26,11 +30,20 @@ class VisaLogin extends Component {
   handleSubmit(event){
     axios.post('/visaLogin',this.state)
     .then(function (response) {
-      console.log(response);
+      console.log("1"+response);
+
     })
     console.log("Current State is: " + JSON.stringify(this.state));
     alert("Current State is: " + JSON.stringify(this.state));
     event.preventDefault();
+    window.location.href = "./CustomerSignUp";
+    //dashbord redirect
+    console.log(window.location.href)
+  }
+
+  consumerSignUp(event){
+    event.preventDefault();
+    window.location.href = "./CustomerSignUp";
   }
 
   render(){
@@ -38,6 +51,7 @@ class VisaLogin extends Component {
       <div>
         <h1 className = 'heading'> Log in </h1>
         <Form className="form">
+
           <Row form>
             <Col md = {6} className="mx-auto">
               <FormGroup className="email">
@@ -49,10 +63,7 @@ class VisaLogin extends Component {
                 value={this.state.email}
                 onChange={this.handleInputChange} />
               </FormGroup>
-            </Col>
-          </Row>
-          <Row form>
-            <Col md = {6} className="mx-auto">
+
               <FormGroup className="password">
                 <Label for="password"> Password </Label>
                 <Input type="password"
@@ -62,19 +73,29 @@ class VisaLogin extends Component {
                 value={this.state.password}
                 onChange={this.handleInputChange} />
               </FormGroup>
-            </Col>
-            </Row>
-            <Row form>
-            <Login className ="visa" />
-            </Row>
-            <Row form>
-              <Col>
-                <FormGroup className='register'>
+
+              <FormGroup className='register'>
                   <Button  type = "submit" color="primary" onClick = {this.handleSubmit}>Login</Button>
-                </FormGroup>
+              </FormGroup>
               </Col>
             </Row>
+
+
+
+          <Row form>
+          <Login className ="visa" hrefs={this.state.hrefs}/>
+          </Row>
+
+          <Row form>
+            <Col>
+              <FormGroup className='register'>
+                <Button  type = "submit" color="primary" onClick = {this.consumerSignUp}>Sign Up as a Consumer</Button>
+              </FormGroup>
+            </Col>
+          </Row>
+
           </Form>
+
       </div>
     );
   }

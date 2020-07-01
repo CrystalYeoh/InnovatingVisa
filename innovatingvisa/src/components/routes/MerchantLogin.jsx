@@ -10,9 +10,11 @@ class MerchantLogin extends Component{
     this.state={
       email:'',
       password:'',
+      hrefs:'./merchantCreateAcc',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.merchantSignUp = this.merchantSignUp.bind(this);
   }
 
   handleInputChange(event) {
@@ -35,7 +37,10 @@ class MerchantLogin extends Component{
     event.preventDefault();
   }
 
-
+  merchantSignUp(event){
+    event.preventDefault();
+    window.location.href = "./merchantCreateAcc";
+  }
 
 render(){
   return (
@@ -53,10 +58,7 @@ render(){
               value={this.state.email}
               onChange={this.handleInputChange} />
             </FormGroup>
-          </Col>
-        </Row>
-        <Row form>
-          <Col md = {6} className="mx-auto">
+
             <FormGroup className="password">
               <Label for="password"> Password </Label>
               <Input type="password"
@@ -66,15 +68,22 @@ render(){
               value={this.state.password}
               onChange={this.handleInputChange} />
             </FormGroup>
-          </Col>
+
+              <FormGroup className='register'>
+                <Button  type = "submit" color="primary" onClick = {this.handleSubmit}>Login</Button>
+              </FormGroup>
+            </Col>
           </Row>
+
+
           <Row form>
-          <Login className ="visa" />
+          <Login className ="visa" hrefs={this.state.hrefs}/>
           </Row>
+
           <Row form>
             <Col>
               <FormGroup className='register'>
-                <Button  type = "submit" color="primary" onClick = {this.handleSubmit}>Login</Button>
+                <Button  type = "submit" color="primary" onClick = {this.merchantSignUp}>Sign Up as a Merchant</Button>
               </FormGroup>
             </Col>
           </Row>

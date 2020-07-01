@@ -1,12 +1,16 @@
 import React,{Component} from 'react';
 import {Media, Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle} from 'reactstrap';
-
-
+import CreateVISAReady from "./routes/CreateVISAReady";
+import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 
 
 class Login extends Component{
     constructor(props){
         super(props);
+        this.state = {
+        hrefs : './CustomerSignUp',
+      };
+        console.log(this.state.hrefs);
         this.onVisaCheckoutReady = this.onVisaCheckoutReady.bind(this);
     }
 
@@ -22,17 +26,17 @@ class Login extends Component{
     });
     window.V.on("payment.success", function(payment) {
     console.log("sucess 2"+JSON.stringify(payment));
-    window.DATA=1;
-    return payment;
-    //document.write("payment.success: \n" + JSON.stringify(payment));
+    // document.write("payment.success: \n" + JSON.stringify(payment));
+    console.log(this.state.hrefs);
+    window.location.href = './CustomerSignUp';
     });
     window.V.on("payment.cancel", function(payment) {
     console.log(payment);
-    document.write("payment.cancel: \n" + JSON.stringify(payment));
+    // document.write("payment.cancel: \n" + JSON.stringify(payment));
     });
     window.V.on("payment.error", function(payment, error) {
     console.log(payment);
-    document.write("payment.error: \n" + JSON.stringify(payment) + "\n" + JSON.stringify(error));
+    // document.write("payment.error: \n" + JSON.stringify(payment) + "\n" + JSON.stringify(error));
     });
     }
 
