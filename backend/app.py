@@ -61,7 +61,7 @@ def index():
 
 
 @app.route('/upload-image', methods=['POST'])
-def upload():
+def uploadimages():
     """Process the uploaded file and upload it to Google Cloud Storage."""
     listurls=[]
     for i in range(len(request.files)):
@@ -89,18 +89,11 @@ def upload():
     return json_response(listurls)
 
 
-@app.route('/urls', methods=['get'])
-def upload2():
 
-    return json_response('boo')
-
-@app.route('/here', methods=['get'])
-def upload3():
-
-    return json_response('boo')
 
 def json_response(payload, status=200):
  return (json.dumps(payload), status, {'content-type': 'application/json'})
+
 @app.route('/upload', methods=['POST'])
 def upload():
     """Process the uploaded file and upload it to Google Cloud Storage."""
@@ -294,7 +287,7 @@ def getAllListings():
 def getSearchListing():
     raw_json = request.get_json()
     sqlstatement="""
-    SELECT Headertext, frontimage, Url 
+    SELECT Headertext, frontimage, Url
     FROM testDB.Urls
     WHERE Headertext LIKE '%%{}%%'
     OR Bodyheading LIKE '%%{}%%'
