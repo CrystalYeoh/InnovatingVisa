@@ -11,35 +11,31 @@ class Listing extends React.Component {
     constructor(props) {
         super(props);
         this.listing = props.listing;
-        this.id = this.listing["companyName"]
-        this.image = 'logo192.png'
-        this.title = this.listing["companyName"]
-        this.address = this.listing["addr"]
-        this.description = this.listing["descr"]
+        this.url = this.listing["Url"]
+        this.image = this.listing["frontimage"]
+        this.title = this.listing["Headertext"]
     }
 
     componentWillReceiveProps(nextProps) {
       this.props = nextProps
       this.listing = this.props.listing;
-      this.id = this.listing["companyName"]
-      this.image = 'logo192.png'
-      this.title = this.listing["companyName"]
-      this.address = this.listing["addr"]
-      this.description = this.listing["descr"]
+      this.url = this.listing["Url"]
+      this.image = this.listing["frontimage"]
+      this.title = this.listing["Headertext"]
     }
 
     render() {
         return (
           
           <div>
-              <Card border="info" style={{ width: '18rem' }}>
+              <Card border="primary" style={{ width: '18rem' }}>
                 <CardImg variant="top" src={`${this.image}`} />
                 <CardBody>
-                  <CardTitle>{this.id}</CardTitle>
-                  <CardText>
+                  <CardTitle>{this.title}</CardTitle>
+                  {/* <CardText>
                     {this.address}
-                  </CardText>
-                  <Button variant="primary" to={`/details/${this.id}`}>Go somewhere</Button>
+                  </CardText> */}
+                  <Button variant="primary" to={`${this.url}`}>Go to Store</Button>
                 </CardBody>
               </Card>
           </div>

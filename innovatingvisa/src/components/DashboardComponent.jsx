@@ -66,7 +66,7 @@ class Dashboard extends React.Component {
         if (this.state.data) {
             console.log(this.state.data)
             return (
-                <div>
+                <div style={{justifyContent:'center'}}>
                     <Form inline>
                         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
                             <Label for="search" className="mr-sm-2">Search:</Label>

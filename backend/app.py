@@ -103,7 +103,8 @@ def postsqlquery():
 def getAllListings():
     raw_json = request.get_json()
     sqlstatement="""
-    SELECT * FROM testDB.Merchants
+    SELECT Headertext, frontimage, Url
+    FROM testDB.Urls
     """
     print(sqlstatement)
     x=sql_GCP_query(sqlstatement)
@@ -114,10 +115,11 @@ def getAllListings():
 def getSearchListing():
     raw_json = request.get_json()
     sqlstatement="""
-    SELECT * FROM testDB.Merchants 
-    WHERE companyName LIKE '%%{}%%'
-    OR descr LIKE '%%{}%%'
-    OR merchType LIKE '%%{}%%'
+    SELECT Headertext, frontimage, Url 
+    FROM testDB.Urls
+    WHERE Headertext LIKE '%%{}%%'
+    OR Bodyheading LIKE '%%{}%%'
+    OR Bodytextrow LIKE '%%{}%%'
     """.format(raw_json['search'], raw_json['search'], raw_json['search'])
     print(sqlstatement)
     x=sql_GCP_query(sqlstatement)
