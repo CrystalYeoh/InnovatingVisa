@@ -14,4 +14,8 @@ def sql_GCP_Insert(sqlstring):
 #     FirstName varchar(255),
 #     Address varchar(255),
 #     City varchar(255)); """)
+<<<<<<< HEAD
+sql_GCP("""SELECT * FROM STATION;""")
+=======
 # sql_GCP("""SELECT * FROM STATION;""")
+>>>>>>> master
