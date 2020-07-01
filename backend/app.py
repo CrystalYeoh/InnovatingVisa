@@ -117,11 +117,14 @@ def customer_signup():
 def visa_login():
     raw_json = request.get_json()
     print(raw_json)
-    sqlstatement=""" INSERT INTO testDB.UserLogin (userName, password)
-    VALUES ('{}','{}')""".format(raw_json['userName'],raw_json['password'])
-    sql_GCP_insert(sqlstatement)
-
-    return 'wabalabadubdub',201
+    sqlstatement="""SELECT * FROM testDB.Consumers WHERE email = '{}' and password= '{}'""".format(raw_json['email'],raw_json['password'])
+    x = sql_GCP_query(sqlstatement)
+    print(x)
+    if(x):
+        return x,201
+    else:
+        print('not found')
+        return 'NOTFOUND',201
 
 @app.route
 @app.route('/sqlpostquery', methods=['POST'])
