@@ -1,25 +1,14 @@
 import React, { Component } from "react";
 import { Navbar, NavbarBrand } from "reactstrap";
-<<<<<<< HEAD
 import UrlCreator from "./CreateurlComponent";
-=======
-// import Header from "./HeaderComponent";
-// import Footer from "./FooterComponent";
->>>>>>> master
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-<<<<<<< HEAD
 import axios from "axios";
 import Url from "./UrlComponent";
 import { API_URL } from "../shared/baseUrl";
 import Createstore from "./CreatestoreComponent";
 import Updatestore from "./Storeupdater";
 import Store from "./Storecomponent";
-
-=======
-import { postUrl, fetchUrls, fetchUsers } from "../redux/ActionCreators";
-//import UrlCreator from "./CreateurlComponent";
-//import PageShower from "./PageComponent";
 import SortingPage from './routes/SortingPage'
 import MerchantSortingPage from "./routes/MerchantSortingPage";
 import CreateVISAReady from "./routes/CreateVISAReady"
@@ -91,7 +80,6 @@ const mapDispatchToProps = (dispatch) => ({
       )
     ),
 });
->>>>>>> master
 class Main extends Component {
   constructor(props) {
     super(props);
@@ -99,7 +87,6 @@ class Main extends Component {
   }
 
   render() {
-<<<<<<< HEAD
     const Createurl = () => {
       return <UrlCreator />;
     };
@@ -110,20 +97,11 @@ class Main extends Component {
       return <Store match={match.params} />;
     };
 
-=======
-    // const Page = () => {
-    //   return <PageShower />;
-    // };
-    // const Createurl = () => {
-    //   return <UrlCreator />;
-    // };
->>>>>>> master
     return (
       
       <div>
         <MyNavbar />
         <Switch>
-<<<<<<< HEAD
           <Route
             path="/createurl"
             component={Createurl}
@@ -139,7 +117,6 @@ class Main extends Component {
             component={() => <Updatestore user={this.state.user} />}
           />
           <Route path="/stores/:url" component={Storewithurl} />
-=======
           {/* <Route path="/createurl" component={Createurl} />
           <Route path="/url" component={Page} /> */}
           <Route path="/sortingpage" component={SortingPage} />
@@ -149,7 +126,6 @@ class Main extends Component {
           <Route path="/trial" component={Trial} />
           <Route path="/dashboard" component={Dashboard} />
           <Redirect to="/sortingpage" />
->>>>>>> master
         </Switch>
       </div>
     );

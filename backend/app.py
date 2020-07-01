@@ -1,7 +1,6 @@
 import logging
 import os
 
-<<<<<<< HEAD
 from flask import Flask, json, g, request,jsonify
 from google.cloud import storage
 from sqlalchemy import create_engine
@@ -12,15 +11,6 @@ import string
 def randomString(stringLength=8):
     letters = string.ascii_lowercase
     return ''.join(random.choice(letters) for i in range(stringLength))
-=======
-from flask import Flask, request
-from google.cloud import storage
-from sqlalchemy import create_engine
-import jsonify
-from flask_cors import CORS
-
-
->>>>>>> master
 
 def sql_GCP_insert(sqlstring):
     engine = create_engine('mysql+pymysql://root:Visa1234@34.87.113.249:3306/testDB')
@@ -70,7 +60,6 @@ def index():
 """
 
 
-<<<<<<< HEAD
 @app.route('/upload-image', methods=['POST'])
 def upload():
     """Process the uploaded file and upload it to Google Cloud Storage."""
@@ -112,7 +101,6 @@ def upload3():
 
 def json_response(payload, status=200):
  return (json.dumps(payload), status, {'content-type': 'application/json'})
-=======
 @app.route('/upload', methods=['POST'])
 def upload():
     """Process the uploaded file and upload it to Google Cloud Storage."""
@@ -137,7 +125,6 @@ def upload():
 
     # The public URL can be used to directly access the uploaded file via HTTP.
     return blob.public_url
->>>>>>> master
 
 @app.route('/sqlpost', methods=['POST'])
 def postsql():
@@ -147,7 +134,6 @@ def postsql():
 
     return 'yay',201
 
-<<<<<<< HEAD
 @app.route('/sqlposturl', methods=['POST'])
 def postsqlurl():
     raw_json = request.get_json()
@@ -169,7 +155,6 @@ def postsqlurl():
     VALUES ('{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}','{}')
     """.format(raw_json['url'],raw_json['headertext'],raw_json['bodytextrow'],bodyheadingtext[:-7],bodytexttext[:-7],raw_json['footertext'],raw_json['twitterurl'],raw_json['facebookurl'],raw_json['instagramurl'],raw_json['twitterchecked'],raw_json['facebookchecked'],raw_json['instagramchecked'],raw_json['phonenumber'],bodyimagestext[:-7],raw_json[:'headersubtext'],raw_json['frontimage'])
     print(sqlstatement)
-=======
 @app.route('/merchantSignUp', methods=['POST'])
 def merchant_signup():
     raw_json = request.get_json()
@@ -178,12 +163,10 @@ def merchant_signup():
     INSERT INTO testDB.Merchants (firstName, lastName, email, companyName, password, descr, addr, merchType, contactNo)
     VALUES ('{}','{}','{}','{}','{}','{}','{}','{}','{}')
     """.format(raw_json['firstName'],raw_json['lastName'],raw_json['email'],raw_json['companyName'],raw_json['password'],raw_json['descr'],raw_json['addr'],raw_json['merchType'],raw_json['contactNo'])
->>>>>>> master
     sql_GCP_insert(sqlstatement)
 
     return 'yay',201
 
-<<<<<<< HEAD
 @app.route('/sqlpoststore', methods=['POST'])
 def createstore():
     raw_json = request.get_json()
@@ -292,15 +275,6 @@ def postsqlquery():
     raw_json = request.get_json()
     sqlstatement=raw_json['sql']
     x=sql_GCP_query(sqlstatement)
-
-=======
-
-@app.route('/sqlpostquery', methods=['POST'])
-def postsqlquery():
-    raw_json = request.get_json()
-    sqlstatement=raw_json['sql']
-    x=sql_GCP_query(sqlstatement)
-    print(x)
     return x,201
 
 # gets all listings from the database
@@ -329,7 +303,6 @@ def getSearchListing():
     print(sqlstatement)
     x=sql_GCP_query(sqlstatement)
     print(x)
->>>>>>> master
     return x,201
 
 @app.errorhandler(500)
