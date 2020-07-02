@@ -2,17 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Footer(props) {
-  const twittercontent = props.twitterchecked ? (
+  const twittercontent = (props.twitterchecked =="True") ? (
     <a className="btn btn-social-icon btn-twitter" href={props.twitterurl}>
       <i className="fa fa-twitter" href={props.twitterurl}></i>
     </a>
   ) : null;
-  const facebookcontent = props.facebookchecked ? (
+  const facebookcontent = (props.facebookchecked =="True") ? (
     <a className="btn btn-social-icon btn-facebook" href={props.facebookurl}>
       <i className="fa fa-facebook" href={props.facebookurl}></i>
     </a>
   ) : null;
-  const instagramcontent = props.instagramchecked ? (
+  const instagramcontent = (props.instagramchecked  =="True")? (
     <a className="btn btn-social-icon btn-instagram" href={props.instagramurl}>
       <i className="fa fa-instagram" href={props.instagramurl}></i>
     </a>
