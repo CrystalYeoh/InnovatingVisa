@@ -39,8 +39,8 @@ class CreateVISAReady extends Component {
       console.log(response);
     })
     console.log("Current State is: " + JSON.stringify(this.state));
-    alert("Current State is: " + JSON.stringify(this.state));
     event.preventDefault();
+    window.location.href = "./merchantLogin";
   }
   render(){
     return (
@@ -172,9 +172,7 @@ class CreateVISAReady extends Component {
         <Row form>
           <Col>
             <FormGroup className='register'>
-              <Link to = '/merchantSignin'>
                 <Button  type = "submit" color="primary" onClick = {this.handleSubmit}>Register</Button>
-              </Link>
             </FormGroup>
           </Col>
         </Row>

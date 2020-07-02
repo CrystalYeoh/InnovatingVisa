@@ -17,11 +17,12 @@ class Login extends Component{
 
     onVisaCheckoutReady(event) {
     window.V.init( {
-    apikey: "C4GI1FOHEIH601ILQACF215ZGx7iAeDkbd_BgOfm7C-jdRv_8",
+    apikey: "E9OIZRTJKVSSRIIC4SGR21CGSLIxbrYEdtGsNYzwxr50HC68k",
     externalProfileId: "SYSTEMDEFAULT",
     paymentRequest: {
     currencyCode: "USD",
-    subtotal: "20.00"
+    subtotal: "20.00",
+    dataLevel: "FULL"
     }
     });
     window.V.on("payment.success", function(payment) {

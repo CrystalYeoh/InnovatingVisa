@@ -180,8 +180,8 @@ class UrlCreator extends Component {
     const instagramcontent = this.state.instagramchecked ? (
       <div>
         <FormGroup row>
-          <Label htmlFor="twitterurl" md={2}>
-            Twitter Url
+          <Label htmlFor="instagramurl" md={2}>
+            Instagram Url
           </Label>
           <Col md={10}>
             <Input
