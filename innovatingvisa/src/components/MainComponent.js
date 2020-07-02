@@ -11,12 +11,75 @@ import Updatestore from "./Storeupdater";
 import Store from "./Storecomponent";
 import SortingPage from "./routes/SortingPage";
 import MerchantSortingPage from "./routes/MerchantSortingPage";
-import CreateVISAReady from "./routes/CreateVISAReady";
-import LinkAcquirer from "./routes/LinkAcquirer";
-import Trial from "./routes/trial";
+import CreateVISAReady from "./routes/CreateVISAReady"
+import LinkAcquirer from "./routes/LinkAcquirer"
+import Trial from "./routes/trial"
+import VisaLogin from "./routes/VisaLogin";
+import CustomerSignUp from './routes/CustomerSignUp';
+import MerchantLogin from './routes/MerchantLogin';
 import Dashboard from "./DashboardComponent";
 import MyNavbar from "./NavbarComponent";
 import Dashboardga from "./dashboardga";
+
+
+// const mapStateToProps = (state) => {
+//   return {
+//     urls: state.urls,
+//     users: state.users,
+//   };
+// };
+// const mapDispatchToProps = (dispatch) => ({
+//   addUrl: (
+//     url,
+//     headertext,
+//     headersubtext,
+//     bodytext,
+//     bodyimages,
+//     footerlinks,
+//     footertext,
+//     socialmediatypes,
+//     socialmedialinks
+//   ) =>
+//     dispatch(
+//       postUrl(
+//         url,
+//         headertext,
+//         headersubtext,
+//         bodytext,
+//         bodyimages,
+//         footerlinks,
+//         footertext,
+//         socialmediatypes,
+//         socialmedialinks
+//       )
+//     ),
+//   fetchUrls: () => dispatch(fetchUrls()),
+//   fetchUsers: () => dispatch(fetchUsers()),
+//   postUrl: (
+//     url,
+//     headertext,
+//     headersubtext,
+//     bodytext,
+//     bodyimages,
+//     footerlinks,
+//     footertext,
+//     socialmediatypes,
+//     socialmedialinks
+//   ) =>
+//     dispatch(
+//       postUrl(
+//         url,
+//         headertext,
+//         headersubtext,
+//         bodytext,
+//         bodyimages,
+//         footerlinks,
+//         footertext,
+//         socialmediatypes,
+//         socialmedialinks
+//       )
+//     ),
+// });
 
 class Main extends Component {
   constructor(props) {
@@ -61,11 +124,15 @@ class Main extends Component {
           <Route path="/merchantCreateAcc" component={CreateVISAReady} />
           <Route path="/acquirerlink" component={LinkAcquirer} />
           <Route path="/trial" component={Trial} />
+          <Route path='/visaLogin' component={VisaLogin} />
+          <Route path='/customerSignUp' component={CustomerSignUp} />
+          <Route path='/merchantLogin' component={MerchantLogin} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/stores/:url" component={Storewithurl} />
           <Route path="/gadashboard" component={Dashboardga} />
 
           <Redirect to="/sortingpage" />
+
         </Switch>
       </div>
     );

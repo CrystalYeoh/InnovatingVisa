@@ -1,21 +1,17 @@
 import React, {Component} from 'react';
 import { Button, Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
-import './CreateVISAReady.css';
+import './CustomerSignUp.css';
 import axios from 'axios';
 
-class CreateVISAReady extends Component {
-  constructor(props) {
+class CustomerSignUp extends Component{
+  constructor(props){
     super(props);
     this.state = {
       firstName:'',
       lastName:'',
       email:'',
-      companyName: '',
       password:'',
       passwordVerify:'',
-      descr: '',
-      addr:'',
-      merchType:'',
       contactNo:'',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -25,7 +21,7 @@ class CreateVISAReady extends Component {
   handleInputChange(event) {
     const target = event.target;
     console.log(target);
-    const value = target.type === "checkbox" ? target.checked : target.value;
+    const value = target.value;
     const name = target.name;
     this.setState({
       [name]: value,
@@ -33,18 +29,20 @@ class CreateVISAReady extends Component {
   }
 
   handleSubmit(event) {
-    axios.post('/merchantSignUp', this.state)
+    axios.post('/customerSignUp', this.state)
     .then(function (response) {
       console.log(response);
     })
     console.log("Current State is: " + JSON.stringify(this.state));
     alert("Current State is: " + JSON.stringify(this.state));
     event.preventDefault();
+    window.location.href = "./VisaLogin";
   }
+
   render(){
     return (
       <div>
-      <h1 className = 'heading'>Sign up for VISAMarket Account!</h1>
+      <h1 className = 'heading'>Sign up for VISAConsumer Account!</h1>
       <Form  className="form">
         <Row form>
           <Col md = {6}>
@@ -59,6 +57,7 @@ class CreateVISAReady extends Component {
                 onChange={this.handleInputChange} />
             </FormGroup>
           </Col>
+
           <Col md = {6}>
             <FormGroup className="lastName">
               <Label for="lastName">Last Name</Label>
@@ -71,6 +70,7 @@ class CreateVISAReady extends Component {
                 onChange={this.handleInputChange} />
             </FormGroup>
           </Col>
+
         </Row>
         <Row form>
         <Col md = {6}>
@@ -85,18 +85,7 @@ class CreateVISAReady extends Component {
                 onChange={this.handleInputChange}/>
             </FormGroup>
           </Col>
-          <Col md = {6}>
-            <FormGroup>
-              <Label for="companyName">Company Name</Label>
-              <Input
-                type="name"
-                name="companyName"
-                id="companyName"
-                placeholder="Smith Company"
-                value={this.state.companyName}
-                onChange={this.handleInputChange} />
-            </FormGroup>
-          </Col>
+
         </Row>
         <Row form>
           <Col md = {6}>
@@ -125,35 +114,6 @@ class CreateVISAReady extends Component {
           </Col>
         </Row>
         <Row form>
-          <Col md = {6}>
-            <FormGroup>
-              <Label for="addr">Address</Label>
-              <Input
-                name="addr"
-                id="addr"
-                placeholder="Enter your address here"
-                value={this.state.addr}
-                onChange={this.handleInputChange} />
-            </FormGroup>
-          </Col>
-          <Col>
-            <FormGroup>
-              <Label for="merchantType">Merchant Type</Label>
-              <Input
-                type ="select"
-                name="merchType"
-                id="merchType"
-                placeholder="What is your merchant type?"
-                value={this.state.merchType}
-                onChange={this.handleInputChange}>
-                <option>Retail</option>
-                <option>Food and Beverage</option>
-                <option>Finance</option>
-              </Input>
-            </FormGroup>
-          </Col>
-        </Row>
-        <Row form>
           <Col>
             <FormGroup>
               <Label for="contactNo">Contact Number</Label>
@@ -177,8 +137,8 @@ class CreateVISAReady extends Component {
         </Row>
       </Form>
       </div>
-
     );
   }
 }
-export default  CreateVISAReady
+
+export default CustomerSignUp

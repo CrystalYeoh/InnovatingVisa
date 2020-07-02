@@ -165,6 +165,45 @@ def merchant_signup():
 
     return 'yay',201
 
+@app.route('/customerSignUp', methods=['POST'])
+def customer_signup():
+    raw_json = request.get_json()
+    print(raw_json)
+    sqlstatement="""
+    INSERT INTO testDB.Consumers (email, password,id)
+    VALUES ('{}','{}')
+    """.format(raw_json['email'],raw_json['password'])
+    sql_GCP_insert(sqlstatement)
+
+    return 'wabalabadubdub',201
+
+
+@app.route('/visaLogin',methods=['POST'])
+def visa_login():
+    raw_json = request.get_json()
+    print(raw_json)
+    sqlstatement="""SELECT * FROM testDB.Consumers WHERE email = '{}' and password= '{}'""".format(raw_json['email'],raw_json['password'])
+    x = sql_GCP_query(sqlstatement)
+    print(x)
+    if(x):
+        return x,201
+    else:
+        print('not found')
+        return 'NOTFOUND',201
+
+@app.route('/merchantLogin',methods=['POST'])
+def merchantLogin():
+    raw_json = request.get_json()
+    print(raw_json)
+    sqlstatement="""SELECT * FROM testDB.Merchants WHERE email = '{}' and password= '{}'""".format(raw_json['email'],raw_json['password'])
+    x = sql_GCP_query(sqlstatement)
+    print(x)
+    if(x):
+        return x,201
+    else:
+        print('not found')
+        return 'NOTFOUND',201
+
 @app.route('/sqlpoststore', methods=['POST'])
 def createstore():
     raw_json = request.get_json()
@@ -249,6 +288,7 @@ def retrieveurlid():
     print(x)
 
     return x,201
+  
 @app.route('/sqlposturlquery', methods=['POST'])
 def postsqlurlquery():
     raw_json = request.get_json()
@@ -267,6 +307,7 @@ def postsqlurlquery():
         return 'Nth',404
 
     return x,201
+
 
 @app.route('/sqlpostquery', methods=['POST'])
 def postsqlquery():
