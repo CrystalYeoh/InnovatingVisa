@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, Label, Input, Container, Row, Col } from 'reac
 import './VisaLogin.css';
 import axios from 'axios';
 import Login from '../LoginComponentTest';
-import {Redirect} from 'react-router-dom';
+import {Redirect,Link} from 'react-router-dom';
 
 class VisaLogin extends Component {
   constructor(props){
@@ -11,11 +11,11 @@ class VisaLogin extends Component {
     this.state = {
       email:'',
       password:'',
-      hrefs:'./CustomerSignUp',
+
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.consumerSignUp = this.consumerSignUp.bind(this);
+    // this.consumerSignUp = this.consumerSignUp.bind(this);
   }
   handleInputChange(event) {
     const target = event.target;
@@ -33,18 +33,19 @@ class VisaLogin extends Component {
       console.log("1"+response);
 
     })
-    console.log("Current State is: " + JSON.stringify(this.state));
-    alert("Current State is: " + JSON.stringify(this.state));
+    // console.log("1"+response);
+    // console.log("Current State is: " + JSON.stringify(this.state));
+    // alert("Current State is: " + JSON.stringify(this.state));
     event.preventDefault();
-    window.location.href = "./CustomerSignUp";
+    window.location.href = "./dashboard";
     //dashbord redirect
-    console.log(window.location.href)
+    // console.log(window.location.href)
   }
 
-  consumerSignUp(event){
-    event.preventDefault();
-    window.location.href = "./CustomerSignUp";
-  }
+  // consumerSignUp(event){
+  //   event.preventDefault();
+  //   window.location.href = "./CustomerSignUp";
+  // }
 
   render(){
     return (
@@ -89,7 +90,9 @@ class VisaLogin extends Component {
           <Row form>
             <Col>
               <FormGroup className='register'>
-                <Button  type = "submit" color="primary" onClick = {this.consumerSignUp}>Sign Up as a Consumer</Button>
+                <Link to ="./CustomerSignUp">
+                <Button  type = "submit" color="primary" >Sign Up as a Consumer</Button>
+                </Link>
               </FormGroup>
             </Col>
           </Row>

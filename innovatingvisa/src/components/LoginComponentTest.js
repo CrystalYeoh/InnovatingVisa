@@ -27,7 +27,7 @@ class Login extends Component{
     window.V.on("payment.success", function(payment) {
     console.log("sucess 2"+JSON.stringify(payment));
     // document.write("payment.success: \n" + JSON.stringify(payment));
-    window.location.href = './CustomerSignUp';
+    window.location.href = './dashboard';
     });
     window.V.on("payment.cancel", function(payment) {
     console.log(payment);

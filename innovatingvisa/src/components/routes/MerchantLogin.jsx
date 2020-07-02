@@ -10,11 +10,9 @@ class MerchantLogin extends Component{
     this.state={
       email:'',
       password:'',
-      hrefs:'./merchantCreateAcc',
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.merchantSignUp = this.merchantSignUp.bind(this);
   }
 
   handleInputChange(event) {
@@ -33,14 +31,12 @@ class MerchantLogin extends Component{
       console.log(response);
     })
     console.log("Current State is: " + JSON.stringify(this.state));
+    window.location.href = "./dashboard";
+
     // alert("Current State is: " + JSON.stringify(this.state));
     event.preventDefault();
   }
 
-  merchantSignUp(event){
-    event.preventDefault();
-    window.location.href = "./merchantCreateAcc";
-  }
 
 render(){
   return (
@@ -77,13 +73,13 @@ render(){
 
 
           <Row form>
-          <Login className ="visa" hrefs={this.state.hrefs}/>
+          <Login className ="visa" />
           </Row>
 
           <Row form>
             <Col>
               <FormGroup className='register'>
-                <Button  type = "submit" color="primary" onClick = {this.merchantSignUp}>Sign Up as a Merchant</Button>
+                <Button  type = "submit" color="primary" >Sign Up as a Merchant</Button>
               </FormGroup>
             </Col>
           </Row>

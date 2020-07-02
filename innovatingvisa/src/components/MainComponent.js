@@ -14,77 +14,72 @@ import MerchantSortingPage from "./routes/MerchantSortingPage";
 import CreateVISAReady from "./routes/CreateVISAReady"
 import LinkAcquirer from "./routes/LinkAcquirer"
 import Trial from "./routes/trial"
-import UrlCreator from "./CreateurlComponent";
-import PageShower from "./PageComponent";
 import VisaLogin from "./routes/VisaLogin";
 import CustomerSignUp from './routes/CustomerSignUp';
 import MerchantLogin from './routes/MerchantLogin';
-import CreateVISAReady from "./routes/CreateVISAReady";
-import LinkAcquirer from "./routes/LinkAcquirer";
-import Trial from "./routes/trial";
 import Dashboard from "./DashboardComponent";
 import MyNavbar from "./NavbarComponent";
 import Dashboardga from "./dashboardga";
 
 
-const mapStateToProps = (state) => {
-  return {
-    urls: state.urls,
-    users: state.users,
-  };
-};
-const mapDispatchToProps = (dispatch) => ({
-  addUrl: (
-    url,
-    headertext,
-    headersubtext,
-    bodytext,
-    bodyimages,
-    footerlinks,
-    footertext,
-    socialmediatypes,
-    socialmedialinks
-  ) =>
-    dispatch(
-      postUrl(
-        url,
-        headertext,
-        headersubtext,
-        bodytext,
-        bodyimages,
-        footerlinks,
-        footertext,
-        socialmediatypes,
-        socialmedialinks
-      )
-    ),
-  fetchUrls: () => dispatch(fetchUrls()),
-  fetchUsers: () => dispatch(fetchUsers()),
-  postUrl: (
-    url,
-    headertext,
-    headersubtext,
-    bodytext,
-    bodyimages,
-    footerlinks,
-    footertext,
-    socialmediatypes,
-    socialmedialinks
-  ) =>
-    dispatch(
-      postUrl(
-        url,
-        headertext,
-        headersubtext,
-        bodytext,
-        bodyimages,
-        footerlinks,
-        footertext,
-        socialmediatypes,
-        socialmedialinks
-      )
-    ),
-});
+// const mapStateToProps = (state) => {
+//   return {
+//     urls: state.urls,
+//     users: state.users,
+//   };
+// };
+// const mapDispatchToProps = (dispatch) => ({
+//   addUrl: (
+//     url,
+//     headertext,
+//     headersubtext,
+//     bodytext,
+//     bodyimages,
+//     footerlinks,
+//     footertext,
+//     socialmediatypes,
+//     socialmedialinks
+//   ) =>
+//     dispatch(
+//       postUrl(
+//         url,
+//         headertext,
+//         headersubtext,
+//         bodytext,
+//         bodyimages,
+//         footerlinks,
+//         footertext,
+//         socialmediatypes,
+//         socialmedialinks
+//       )
+//     ),
+//   fetchUrls: () => dispatch(fetchUrls()),
+//   fetchUsers: () => dispatch(fetchUsers()),
+//   postUrl: (
+//     url,
+//     headertext,
+//     headersubtext,
+//     bodytext,
+//     bodyimages,
+//     footerlinks,
+//     footertext,
+//     socialmediatypes,
+//     socialmedialinks
+//   ) =>
+//     dispatch(
+//       postUrl(
+//         url,
+//         headertext,
+//         headersubtext,
+//         bodytext,
+//         bodyimages,
+//         footerlinks,
+//         footertext,
+//         socialmediatypes,
+//         socialmedialinks
+//       )
+//     ),
+// });
 
 class Main extends Component {
   constructor(props) {
@@ -132,7 +127,6 @@ class Main extends Component {
           <Route path='/visaLogin' component={VisaLogin} />
           <Route path='/customerSignUp' component={CustomerSignUp} />
           <Route path='/merchantLogin' component={MerchantLogin} />
-//           <Redirect to="/visaLogin" />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/stores/:url" component={Storewithurl} />
           <Route path="/gadashboard" component={Dashboardga} />
