@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { Button, Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
+import { Link} from 'react-router-dom';
 import './VisaLogin.css';
 import axios from 'axios';
 import Login from '../LoginComponentTest';
@@ -29,9 +30,13 @@ class MerchantLogin extends Component{
     axios.post('/merchantLogin',this.state)
     .then(function (response) {
       console.log(response);
+      window.location.href = "./dashboard";
     })
+    .catch(function (error) {
+      alert("Wrong Email or Password")
+  });
     console.log("Current State is: " + JSON.stringify(this.state));
-    window.location.href = "./dashboard";
+    
 
     // alert("Current State is: " + JSON.stringify(this.state));
     event.preventDefault();
@@ -79,7 +84,9 @@ render(){
           <Row form>
             <Col>
               <FormGroup className='register'>
-                <Button  type = "submit" color="primary" >Sign Up as a Merchant</Button>
+                <Link to = '/merchantCreateAcc'>
+                  <Button  type = "submit" color="primary" >Sign Up as a Merchant</Button>
+                </Link>
               </FormGroup>
             </Col>
           </Row>

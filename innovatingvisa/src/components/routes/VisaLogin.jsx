@@ -15,7 +15,6 @@ class VisaLogin extends Component {
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.consumerSignUp = this.consumerSignUp.bind(this);
   }
   handleInputChange(event) {
     const target = event.target;
@@ -29,23 +28,19 @@ class VisaLogin extends Component {
 
   handleSubmit(event){
     axios.post('/visaLogin',this.state)
-    .then(function (response) {
-      console.log("1"+response);
-
+    .then(function(response){
+      console.log(response)
+      window.location.href = "./dashboard";
     })
-    // console.log("1"+response);
-    // console.log("Current State is: " + JSON.stringify(this.state));
-    // alert("Current State is: " + JSON.stringify(this.state));
+    .catch(function (error) {
+        alert("Wrong Email or Password")
+    });
     event.preventDefault();
-    window.location.href = "./dashboard";
-    //dashbord redirect
-    // console.log(window.location.href)
+    
+    
   }
 
-  // consumerSignUp(event){
-  //   event.preventDefault();
-  //   window.location.href = "./CustomerSignUp";
-  // }
+
 
   render(){
     return (

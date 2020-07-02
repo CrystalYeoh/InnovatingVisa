@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { Button, Form, FormGroup, Label, Input, Container, Row, Col } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input,  Row, Col } from 'reactstrap';
+import { Link} from 'react-router-dom';
 import './CreateVISAReady.css';
 import axios from 'axios';
 
@@ -171,7 +172,9 @@ class CreateVISAReady extends Component {
         <Row form>
           <Col>
             <FormGroup className='register'>
-              <Button  type = "submit" color="primary" onClick = {this.handleSubmit}>Register</Button>
+              <Link to = '/merchantSignin'>
+                <Button  type = "submit" color="primary" onClick = {this.handleSubmit}>Register</Button>
+              </Link>
             </FormGroup>
           </Col>
         </Row>

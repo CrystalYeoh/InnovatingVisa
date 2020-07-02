@@ -34,21 +34,17 @@ def sql_GCP_query(sqlstring):
 
     return dictOfWords
 
-
-
 app = Flask(__name__)
 CORS(app)
 
 # Configure this environment variable via app.yaml
 CLOUD_STORAGE_BUCKET = 'here_myname'
 
-
 def sql_GCP(sqlstring):
     engine = create_engine('mysql+pymysql://postgres:Visa1234@146.148.58.130:3306/innovatingvisa')
     connection = engine.connect()
     connection.execute(sqlstring)
     connection.close()
-
 
 @app.route('/')
 def index():
@@ -58,7 +54,6 @@ def index():
     <input type="submit">
 </form>
 """
-
 
 @app.route('/upload-image', methods=['POST'])
 def uploadimages():
@@ -87,9 +82,6 @@ def uploadimages():
         listurls.append(blob.public_url)
     # The public URL can be used to directly access the uploaded file via HTTP.
     return json_response(listurls)
-
-
-
 
 def json_response(payload, status=200):
  return (json.dumps(payload), status, {'content-type': 'application/json'})
@@ -189,7 +181,7 @@ def visa_login():
         return x,201
     else:
         print('not found')
-        return 'NOTFOUND',201
+        return 'NOTFOUND',404
 
 @app.route('/merchantLogin',methods=['POST'])
 def merchantLogin():
@@ -202,7 +194,7 @@ def merchantLogin():
         return x,201
     else:
         print('not found')
-        return 'NOTFOUND',201
+        return 'NOTFOUND',404
 
 @app.route('/sqlpoststore', methods=['POST'])
 def createstore():
