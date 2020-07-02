@@ -32,7 +32,7 @@ function DashboardGa() {
   });
 
   return (
-    <div className="App">
+    <div>
       {!isSignedIn ? (
         <>
           <Title>Google Analytics Dashboard</Title>
@@ -58,6 +58,7 @@ const ButtonContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  padding-top: 10vmin;
-  margin-top: 0;
+  margin-left: 20px;
+  margin-top: 20px;
+
 `;
