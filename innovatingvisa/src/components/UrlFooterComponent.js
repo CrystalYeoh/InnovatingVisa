@@ -9,12 +9,12 @@ function Footer(props) {
   ) : null;
   const facebookcontent = props.facebookchecked ? (
     <a className="btn btn-social-icon btn-facebook" href={props.facebookurl}>
-      <i className="fa fa-facebook" href={props.twitterurl}></i>
+      <i className="fa fa-facebook" href={props.facebookurl}></i>
     </a>
   ) : null;
   const instagramcontent = props.instagramchecked ? (
-    <a className="btn btn-social-icon btn-instagram" href="http://twitter.com/">
-      <i className="fa fa-instagram" href={props.twitterurl}></i>
+    <a className="btn btn-social-icon btn-instagram" href={props.instagramurl}>
+      <i className="fa fa-instagram" href={props.instagramurl}></i>
     </a>
   ) : null;
   if (

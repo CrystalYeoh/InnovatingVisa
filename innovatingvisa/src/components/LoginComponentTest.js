@@ -15,9 +15,10 @@ class Login extends Component{
     }
 
 
-    onVisaCheckoutReady(event) {
+    onVisaCheckoutReady() {
     window.V.init( {
-    apikey: "E9OIZRTJKVSSRIIC4SGR21CGSLIxbrYEdtGsNYzwxr50HC68k",
+    apikey: "C4GI1FOHEIH601ILQACF215ZGx7iAeDkbd_BgOfm7C-jdRv_8",
+    encryptionKey:"",
     externalProfileId: "SYSTEMDEFAULT",
     paymentRequest: {
     currencyCode: "USD",
