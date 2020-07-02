@@ -33,22 +33,40 @@ class Listing extends React.Component {
   render() {
     console.log(this.url);
     return (
-        <Card border="primary" style={{ width: "18rem" }}>
-          <CardImg variant="top" src={`${this.image}`} />
-          <CardBody>
-            <CardTitle style={{display: 'flex', justifyContent: 'center'}}>{this.title}</CardTitle>
-            <Link to={"/sites/".concat(this.url)}>
-              <Button variant="primary" to={`${this.url}`} style={{ width: "15rem", display: 'flex', justifyContent: 'center' }}>
-                Go to Website
-              </Button>
-            </Link>
-            <Link to={"/stores/".concat(this.url)}>
-              <Button variant="primary" to={`${this.url}`} style={{ width: "15rem", display: 'flex', justifyContent: 'center' }}>
-                Go to Store
-              </Button>
-            </Link>
-          </CardBody>
-        </Card>
+      <Card id="dashboardcards" border="primary" style={{ width: "18rem" }}>
+        <CardImg variant="top" src={`${this.image}`} />
+        <CardBody>
+          <CardTitle style={{ display: "flex", justifyContent: "center" }}>
+            {this.title}
+          </CardTitle>
+          <Link to={"/sites/".concat(this.url)}>
+            <Button
+              variant="primary"
+              to={`${this.url}`}
+              style={{
+                width: "15rem",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              Go to Website
+            </Button>
+          </Link>
+          <Link to={"/stores/".concat(this.url)}>
+            <Button
+              variant="primary"
+              to={`${this.url}`}
+              style={{
+                width: "15rem",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              Go to Store
+            </Button>
+          </Link>
+        </CardBody>
+      </Card>
     );
   }
 }
