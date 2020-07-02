@@ -7,32 +7,22 @@ import {
   Collapse,
   NavItem,
   Jumbotron,
+  Row,
 } from "reactstrap";
 import { NavLink } from "react-router-dom";
 
 class Header extends Component {
   constructor(props) {
     super(props);
-
-    // this.toggleNav = this.toggleNav.bind(this);
-    // this.state = {
-    //   isNavOpen: false,
-    // };
   }
-
-  // toggleNav() {
-  //   this.setState({
-  //     isNavOpen: !this.state.isNavOpen,
-  //   });
-  // }
 
   render() {
     console.log(this.props);
     if (this.props.headertext != "")
       return (
         // <div>
-        //   <Navbar dark expand="md">
-        //     <div className="container">
+        // <Navbar dark expand="md">
+        // <div className="container">
         //       <NavbarToggler onClick={this.toggleNav} />
         //       <NavbarBrand className="mr-auto" href="/">
         //         <img
@@ -67,14 +57,15 @@ class Header extends Component {
         //           </NavItem>
         //         </Nav>
         //       </Collapse>
-        //     </div>
-        //   </Navbar>
+        // </Navbar>
         <Jumbotron>
+          <img id="jumtronimage" src={this.props.image} alt="Logo" />
+
           <div className="container">
             <div className="row row-header">
               <div className="col-12 col-sm-6">
                 <h1>{this.props.headertext}</h1>
-                <p>We create websites and stores for you easily</p>
+                <p>{this.props.headersubtext}</p>
               </div>
             </div>
           </div>
